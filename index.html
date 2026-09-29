@@ -1,0 +1,3192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="ToolNest - Free online tools for PDF, images, text, and more. No signup required, all processing happens in your browser.">
+<meta name="keywords" content="free online tools, pdf tools, image tools, text tools, converter, compressor">
+<meta name="theme-color" content="#6366f1">
+<title>ToolNest - Free Online Tools</title>
+<link rel="canonical" href="https://toolnest.app/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ToolNest">
+<meta property="og:title" content="ToolNest - Free Online Tools">
+<meta property="og:description" content="Fast, useful browser-based tools for text, images, PDFs, developers, and everyday calculations.">
+<meta property="og:url" content="https://toolnest.app/">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛠️</text></svg>">
+<style>
+:root {
+  --primary: #6366f1;
+  --primary-dark: #4f46e5;
+  --primary-light: #818cf8;
+  --bg: #f8fafc;
+  --surface: #ffffff;
+  --text: #1e293b;
+  --text-muted: #64748b;
+  --border: #e2e8f0;
+  --success: #10b981;
+  --error: #ef4444;
+  --shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+  --radius: 12px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* Skip link for accessibility */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--primary);
+  color: white;
+  padding: 8px 16px;
+  z-index: 1000;
+  text-decoration: none;
+}
+.skip-link:focus { top: 0; }
+
+/* Header */
+header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(8px);
+}
+
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.logo-icon {
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+}
+
+.search-box {
+  flex: 1;
+  max-width: 400px;
+  position: relative;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 10px 16px 10px 40px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  background: var(--bg);
+  transition: all 0.2s;
+}
+
+.search-box input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+  background: white;
+}
+
+.search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+/* Main layout */
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 24px 64px;
+}
+
+/* Hero */
+.hero {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 12px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero p {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Category tabs */
+.categories {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 32px;
+}
+
+.cat-btn {
+  padding: 8px 20px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  transition: all 0.2s;
+}
+
+.cat-btn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.cat-btn.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: white;
+}
+
+/* Tools grid */
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.tool-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: left;
+  font-family: inherit;
+  font-size: inherit;
+  text-decoration: none;
+  color: inherit;
+}
+
+.tool-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary-light);
+}
+
+.tool-card:focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.tool-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  background: linear-gradient(135deg, #eef2ff, #e0e7ff);
+}
+
+.tool-card h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.tool-card p {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.tool-content { max-width: 760px; margin: 40px auto 0; }
+.tool-content h2 { margin: 28px 0 8px; font-size: 1.3rem; }
+.tool-content h3 { margin: 18px 0 4px; font-size: 1rem; }
+.tool-content p { margin-bottom: 12px; color: var(--text-muted); }
+.tool-content a, main a { color: var(--primary-dark); }
+nav[aria-label="Breadcrumb"] { margin: 0 0 20px; color: var(--text-muted); font-size: .9rem; }
+.site-links { display:flex; justify-content:center; flex-wrap:wrap; gap:16px; margin-top:16px; }
+.site-links a { color:var(--primary-dark); }
+.category-links { display:flex; justify-content:center; flex-wrap:wrap; gap:10px; margin:0 auto 28px; }
+.category-links a { border:1px solid var(--border); background:white; border-radius:8px; padding:8px 12px; text-decoration:none; }
+
+/* Tool view */
+.tool-view {
+  display: none;
+  animation: fadeIn 0.3s ease;
+}
+
+.tool-view.active { display: block; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+
+.back-btn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.tool-header {
+  margin-bottom: 24px;
+}
+
+.tool-header h2 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.tool-header p {
+  color: var(--text-muted);
+}
+
+.tool-panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 32px;
+}
+
+/* Form controls */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+}
+
+textarea, input[type="text"], input[type="number"], select {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  background: var(--bg);
+  transition: all 0.2s;
+  resize: vertical;
+}
+
+textarea:focus, input:focus, select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+  background: white;
+}
+
+textarea {
+  min-height: 150px;
+  font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+  font-size: 0.85rem;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: white;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: var(--primary-dark);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-lg);
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.btn-secondary:hover {
+  background: var(--border);
+}
+
+.btn-group {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+/* File drop zone */
+.drop-zone {
+  border: 2px dashed var(--border);
+  border-radius: var(--radius);
+  padding: 48px 24px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: var(--bg);
+}
+
+.drop-zone:hover, .drop-zone.dragover {
+  border-color: var(--primary);
+  background: #eef2ff;
+}
+
+.drop-zone-icon {
+  font-size: 2.5rem;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.drop-zone p {
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.drop-zone small {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+.file-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: #eef2ff;
+  border-radius: 8px;
+  margin-top: 12px;
+  font-size: 0.9rem;
+}
+
+.file-info .remove {
+  margin-left: auto;
+  background: none;
+  border: none;
+  color: var(--error);
+  cursor: pointer;
+  font-size: 1.2rem;
+  padding: 4px 8px;
+}
+
+/* Output area */
+.output-area {
+  margin-top: 24px;
+  padding: 20px;
+  background: var(--bg);
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  display: none;
+}
+
+.output-area.visible { display: block; }
+
+.output-area h3 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.output-content {
+  background: white;
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  font-family: 'SF Mono', Monaco, monospace;
+  font-size: 0.85rem;
+  white-space: pre-wrap;
+  word-break: break-all;
+  max-height: 400px;
+  overflow: auto;
+}
+
+/* Toast notification */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: var(--text);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  box-shadow: var(--shadow-lg);
+  transition: transform 0.3s ease;
+  z-index: 2000;
+  pointer-events: none;
+}
+
+.toast.show { transform: translateX(-50%) translateY(0); }
+.toast.success { background: var(--success); }
+.toast.error { background: var(--error); }
+
+/* Image preview */
+.img-preview {
+  max-width: 100%;
+  max-height: 300px;
+  border-radius: 8px;
+  margin-top: 12px;
+  display: block;
+}
+
+/* Grid helpers */
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+/* Range input */
+input[type="range"] {
+  width: 100%;
+  accent-color: var(--primary);
+}
+
+.range-value {
+  font-weight: 600;
+  color: var(--primary);
+}
+
+/* Checkbox */
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.checkbox-group input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--primary);
+  cursor: pointer;
+}
+
+.checkbox-group label {
+  margin: 0;
+  cursor: pointer;
+  font-weight: 400;
+}
+
+/* Spinner */
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+  display: inline-block;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* No results */
+.no-results {
+  text-align: center;
+  padding: 48px 24px;
+  color: var(--text-muted);
+  grid-column: 1 / -1;
+}
+
+/* Footer */
+footer {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  padding: 32px 24px;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+
+footer a { color: var(--primary); text-decoration: none; }
+footer a:hover { text-decoration: underline; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .header-inner { flex-wrap: wrap; }
+  .search-box { max-width: 100%; order: 3; width: 100%; }
+  .hero h1 { font-size: 1.8rem; }
+  .tools-grid { grid-template-columns: 1fr; }
+  .tool-panel { padding: 20px; }
+  main { padding: 20px 16px 48px; }
+}
+
+/* Print */
+@media print {
+  header, footer, .back-btn, .btn-group { display: none; }
+}
+
+/* Hidden utility */
+.hidden { display: none !important; }
+</style>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<header>
+  <div class="header-inner">
+    <a href="/" class="logo" onclick="showHome(event)" aria-label="ToolNest home">
+      <span class="logo-icon" aria-hidden="true">🛠️</span>
+      <span>ToolNest</span>
+    </a>
+    <div class="search-box">
+      <span class="search-icon" aria-hidden="true">🔍</span>
+      <input type="search" id="searchInput" placeholder="Search tools..." aria-label="Search tools">
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <!-- HOME VIEW -->
+  <div id="homeView">
+    <section class="hero">
+      <h1>Free Online Tools</h1>
+      <p>Useful, free tools for everyday tasks. Many tools process data in your browser; each tool explains how its operation works.</p>
+    </section>
+
+      <nav class="category-links" aria-label="Tool categories">
+        <a href="/image-tools/" onclick="setCategory('image'); return false;">Image Tools</a><a href="/pdf-tools/" onclick="setCategory('pdf'); return false;">PDF Tools</a><a href="/text-tools/" onclick="setCategory('text'); return false;">Text Tools</a><a href="/developer-tools/" onclick="setCategory('developer'); return false;">Developer Tools</a><a href="/calculators/" onclick="setCategory('calculator'); return false;">Calculators</a><a href="/networking-tools/" onclick="setCategory('networking'); return false;">Networking</a><a href="/date-time-tools/" onclick="setCategory('datetime'); return false;">Date &amp; Time</a><a href="/student-tools/" onclick="setCategory('student'); return false;">Student Tools</a><a href="/security-tools/" onclick="setCategory('security'); return false;">Security &amp; Utilities</a>
+      </nav>
+
+    <div class="categories" id="categories" role="tablist" aria-label="Tool categories"></div>
+
+    <div class="tools-grid" id="toolsGrid"></div>
+  </div>
+
+  <!-- TOOL VIEW -->
+  <div id="toolView" class="tool-view" role="region" aria-live="polite"></div>
+</main>
+
+<footer>
+  <p>© <span id="copyright-year">2026</span> ToolNest — Free online tools for everyday tasks.</p>
+  <nav class="site-links" aria-label="Company"><a href="/about/">About</a><a href="/contact/">Contact</a><a href="/privacy-policy/">Privacy</a><a href="/terms/">Terms</a><a href="/disclaimer/">Disclaimer</a><a href="/cookie-policy/">Cookies</a></nav>
+  <p style="margin-top:8px;"><a href="/">Back to tools</a></p>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+// ============================================================
+// ToolNest - All tools implemented client-side
+// ============================================================
+
+const state = {
+  currentCategory: 'all',
+  currentTool: null,
+  searchTerm: '',
+  fileData: {}
+};
+
+// ============ TOOL DEFINITIONS ============
+const TOOLS = [
+  // ---- TEXT TOOLS ----
+  {
+    id: 'word-counter',
+    name: 'Word Counter',
+    category: 'text',
+    icon: '📝',
+    description: 'Count words, characters, sentences, and paragraphs in real time.',
+    render: renderWordCounter
+  },
+  {
+    id: 'case-converter',
+    name: 'Case Converter',
+    category: 'text',
+    icon: '🔤',
+    description: 'Convert text to uppercase, lowercase, title case, sentence case, and more.',
+    render: renderCaseConverter
+  },
+  {
+    id: 'remove-duplicates',
+    name: 'Remove Duplicate Lines',
+    category: 'text',
+    icon: '🧹',
+    description: 'Remove duplicate lines from text while preserving order.',
+    render: renderRemoveDuplicates
+  },
+  {
+    id: 'sort-lines',
+    name: 'Sort Lines',
+    category: 'text',
+    icon: '🔢',
+    description: 'Sort lines alphabetically, numerically, or reverse order.',
+    render: renderSortLines
+  },
+  {
+    id: 'lorem-ipsum',
+    name: 'Lorem Ipsum Generator',
+    category: 'text',
+    icon: '📄',
+    description: 'Generate placeholder Lorem Ipsum text by paragraphs, sentences, or words.',
+    render: renderLoremIpsum
+  },
+  {
+    id: 'text-diff',
+    name: 'Text Diff Checker',
+    category: 'text',
+    icon: '🔍',
+    description: 'Compare two texts and highlight the differences line by line.',
+    render: renderTextDiff
+  },
+
+  // ---- IMAGE TOOLS ----
+  {
+    id: 'image-compressor',
+    name: 'Image Compressor',
+    category: 'image',
+    icon: '🗜️',
+    description: 'Compress JPG, PNG, and WebP images in your browser without quality loss.',
+    render: renderImageCompressor
+  },
+  {
+    id: 'image-resizer',
+    name: 'Image Resizer',
+    category: 'image',
+    icon: '📐',
+    description: 'Resize images to exact dimensions or by percentage.',
+    render: renderImageResizer
+  },
+  {
+    id: 'image-converter',
+    name: 'Image Format Converter',
+    category: 'image',
+    icon: '🔄',
+    description: 'Convert images between JPG, PNG, and WebP formats.',
+    render: renderImageConverter
+  },
+  {
+    id: 'image-to-base64',
+    name: 'Image to Base64',
+    category: 'image',
+    icon: '🔗',
+    description: 'Convert images to Base64 data URIs for embedding in HTML/CSS.',
+    render: renderImageToBase64
+  },
+
+  // ---- PDF TOOLS ----
+  {
+    id: 'images-to-pdf',
+    name: 'Images to PDF',
+    category: 'pdf',
+    icon: '📑',
+    description: 'Combine multiple images into a single PDF document.',
+    render: renderImagesToPdf
+  },
+
+  // ---- DEVELOPER TOOLS ----
+  {
+    id: 'json-formatter',
+    name: 'JSON Formatter',
+    category: 'developer',
+    icon: '{}',
+    description: 'Format, validate, and minify JSON data.',
+    render: renderJsonFormatter
+  },
+  {
+    id: 'base64-encoder',
+    name: 'Base64 Encoder/Decoder',
+    category: 'developer',
+    icon: '🔐',
+    description: 'Encode or decode text and files to/from Base64.',
+    render: renderBase64
+  },
+  {
+    id: 'url-encoder',
+    name: 'URL Encoder/Decoder',
+    category: 'developer',
+    icon: '🌐',
+    description: 'Encode or decode URLs and query strings.',
+    render: renderUrlEncoder
+  },
+  {
+    id: 'hash-generator',
+    name: 'Hash Generator',
+    category: 'developer',
+    icon: '#️⃣',
+    description: 'Generate SHA-1, SHA-256, and SHA-512 hashes from text.',
+    render: renderHashGenerator
+  },
+  {
+    id: 'uuid-generator',
+    name: 'UUID Generator',
+    category: 'developer',
+    icon: '🆔',
+    description: 'Generate random UUID v4 identifiers.',
+    render: renderUuidGenerator
+  },
+  {
+    id: 'color-picker',
+    name: 'Color Picker & Converter',
+    category: 'developer',
+    icon: '🎨',
+    description: 'Pick colors and convert between HEX, RGB, HSL, and HSV.',
+    render: renderColorPicker
+  },
+  {
+    id: 'qr-generator',
+    name: 'QR Code Generator',
+    category: 'developer',
+    icon: '📱',
+    description: 'Generate QR codes from text or URLs and download as PNG.',
+    render: renderQrGenerator
+  },
+
+  // ---- CONVERTERS ----
+  {
+    id: 'unit-converter',
+    name: 'Unit Converter',
+    category: 'converter',
+    icon: '📏',
+    description: 'Convert between length, weight, temperature, and area units.',
+    render: renderUnitConverter
+  },
+  {
+    id: 'number-base',
+    name: 'Number Base Converter',
+    category: 'converter',
+    icon: '🔢',
+    description: 'Convert numbers between binary, octal, decimal, and hexadecimal.',
+    render: renderNumberBase
+  },
+
+  // ---- UTILITIES ----
+  {
+    id: 'password-generator',
+    name: 'Password Generator',
+    category: 'utility',
+    icon: '🔑',
+    description: 'Generate strong random passwords with custom options.',
+    render: renderPasswordGenerator
+  },
+  {
+    id: 'qr-scanner',
+    name: 'QR Code Scanner',
+    category: 'utility',
+    icon: '📷',
+    description: 'Scan QR codes from images using your browser.',
+    render: renderQrScanner
+  },
+  {
+    id: 'stopwatch',
+    name: 'Stopwatch & Timer',
+    category: 'utility',
+    icon: '⏱️',
+    description: 'A simple stopwatch with lap times.',
+    render: renderStopwatch
+  },
+  {
+    id: 'random-number',
+    name: 'Random Number Generator',
+    category: 'utility',
+    icon: '🎲',
+    description: 'Generate random numbers within a range.',
+    render: renderRandomNumber
+  },
+  {
+    id: 'percentage-calc',
+    name: 'Percentage Calculator',
+    category: 'utility',
+    icon: '💯',
+    description: 'Calculate percentages, increases, decreases, and more.',
+    render: renderPercentageCalc
+  }
+];
+
+const CATEGORIES = [
+  { id: 'all', name: 'All Tools', icon: '🏠' },
+  { id: 'text', name: 'Text', icon: '📝' },
+  { id: 'image', name: 'Image', icon: '🖼️' },
+  { id: 'pdf', name: 'PDF', icon: '📄' },
+  { id: 'developer', name: 'Developer', icon: '💻' },
+  { id: 'networking', name: 'Networking', icon: '🌐' },
+  { id: 'calculator', name: 'Calculators', icon: '🧮' },
+  { id: 'datetime', name: 'Date & Time', icon: '🕒' },
+  { id: 'student', name: 'Student', icon: '🎓' },
+  { id: 'security', name: 'Security', icon: '🔐' },
+  { id: 'converter', name: 'Converters', icon: '🔄' },
+  { id: 'utility', name: 'Utilities', icon: '🧰' }
+];
+
+// ============ UTILITIES ============
+function toast(msg, type = '') {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast show ' + type;
+  clearTimeout(t._timer);
+  t._timer = setTimeout(() => t.className = 'toast', 2500);
+}
+
+function downloadBlob(blob, filename) {
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+function downloadText(text, filename) {
+  downloadBlob(new Blob([text], { type: 'text/plain' }), filename);
+}
+
+async function copyText(text) {
+  try {
+    await navigator.clipboard.writeText(text);
+    toast('Copied to clipboard!', 'success');
+  } catch (e) {
+    // Fallback
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    toast('Copied to clipboard!', 'success');
+  }
+}
+
+function formatBytes(bytes) {
+  if (bytes === 0) return '0 B';
+  const k = 1024;
+  const sizes = ['B', 'KB', 'MB', 'GB'];
+  const i = Math.floor(Math.log(bytes) / Math.log(k));
+  return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+}
+
+function escapeHtml(str) {
+  return str.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+function readFileAsText(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = e => resolve(e.target.result);
+    reader.onerror = reject;
+    reader.readAsText(file);
+  });
+}
+
+function readFileAsDataURL(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = e => resolve(e.target.result);
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+function readFileAsArrayBuffer(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = e => resolve(e.target.result);
+    reader.onerror = reject;
+    reader.readAsArrayBuffer(file);
+  });
+}
+
+function loadImage(file) {
+  return new Promise((resolve, reject) => {
+    const url = URL.createObjectURL(file);
+    const img = new Image();
+    img.onload = () => { resolve({ img, url }); };
+    img.onerror = reject;
+    img.src = url;
+  });
+}
+
+// ============ ROUTING ============
+function showHome(e) {
+  if (e) e.preventDefault();
+  document.getElementById('homeView').style.display = '';
+  document.getElementById('toolView').classList.remove('active');
+  document.getElementById('toolView').innerHTML = '';
+  state.currentTool = null;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  if (e) history.pushState(null, '', '/');
+  document.title = 'ToolNest - Free Online Tools';
+}
+
+function openTool(toolId) {
+  const tool = TOOLS.find(t => t.id === toolId);
+  if (!tool) return;
+  state.currentTool = tool;
+  document.getElementById('homeView').style.display = 'none';
+  const view = document.getElementById('toolView');
+  view.classList.add('active');
+  view.innerHTML = `
+    <nav aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/${tool.category === 'image' ? 'image-tools' : tool.category === 'pdf' ? 'pdf-tools' : tool.category === 'text' ? 'text-tools' : tool.category === 'developer' ? 'developer-tools' : tool.category === 'converter' ? 'calculators' : 'security-tools'}/">${tool.category}</a> / ${tool.name}</nav>
+    <div class="tool-header">
+      <h1>${tool.icon} ${tool.name}</h1>
+      <p>${tool.description}</p>
+    </div>
+    <div class="tool-panel" id="toolPanel"></div>
+    <section class="tool-content">
+      <h2>How to use ${tool.name}</h2>
+      <p>${tool.description} Enter your information in the tool above, review the result, and use the available copy or download controls when provided. Inputs are handled in this browser unless a feature explicitly says otherwise.</p>
+      <h2>About this tool</h2>
+      <p>${tool.name} is designed for quick, focused tasks without requiring an account. Check your input before processing; file tools work best with supported, uncorrupted files and very large files may be limited by your device's available memory.</p>
+      <h2>Frequently asked questions</h2>
+      <h3>Is this tool free?</h3><p>Yes. You can use it in a modern browser without creating an account.</p>
+      <h3>Is my input uploaded?</h3><p>This tool runs in your browser. ToolNest does not receive your text or files through this page.</p>
+    </section>
+  `;
+  tool.render(document.getElementById('toolPanel'));
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  history.pushState(null, '', '/tools/' + toolId + '/');
+  document.title = `${tool.name} | ToolNest`;
+  const description = document.querySelector('meta[name="description"]');
+  if (description) description.content = `${tool.description} Use ${tool.name} online with ToolNest.`;
+  const canonical = document.querySelector('link[rel="canonical"]');
+  if (canonical) canonical.href = `https://toolnest.app/tools/${tool.id}/`;
+  const ogTitle = document.querySelector('meta[property="og:title"]');
+  if (ogTitle) ogTitle.content = `${tool.name} | ToolNest`;
+  const ogDescription = document.querySelector('meta[property="og:description"]');
+  if (ogDescription) ogDescription.content = `${tool.description} Use ${tool.name} online with ToolNest.`;
+  const ogUrl = document.querySelector('meta[property="og:url"]');
+  if (ogUrl) ogUrl.content = `https://toolnest.app/tools/${tool.id}/`;
+  const related = TOOLS.filter(item => item.id !== tool.id && item.category === tool.category).slice(0, 4);
+  const relatedSection = document.createElement('section');
+  relatedSection.className = 'tool-content';
+  relatedSection.innerHTML = `<h2>Related tools</h2><p>${related.map(item => `<a href="/tools/${item.id}/">${escapeHtml(item.name)}</a>`).join(' · ')}</p><p class="privacy-note">Privacy: this tool runs in your browser. Data entered here is not sent to ToolNest.</p>`;
+  view.appendChild(relatedSection);
+}
+
+// ============ RENDERING ============
+function renderCategories() {
+  const el = document.getElementById('categories');
+  el.innerHTML = CATEGORIES.map(c => `
+    <button class="cat-btn ${c.id === state.currentCategory ? 'active' : ''}"
+            role="tab"
+            aria-selected="${c.id === state.currentCategory}"
+            onclick="setCategory('${c.id}')">
+      ${c.icon} ${c.name}
+    </button>
+  `).join('');
+}
+
+function setCategory(id) {
+  state.currentCategory = id;
+  renderCategories();
+  renderTools();
+}
+
+function renderTools() {
+  const grid = document.getElementById('toolsGrid');
+  const term = state.searchTerm.toLowerCase().trim();
+  let filtered = TOOLS;
+  if (state.currentCategory !== 'all') {
+    filtered = filtered.filter(t => t.category === state.currentCategory);
+  }
+  if (term) {
+    filtered = filtered.filter(t =>
+      t.name.toLowerCase().includes(term) ||
+      t.description.toLowerCase().includes(term)
+    );
+  }
+  if (filtered.length === 0) {
+    grid.innerHTML = `<div class="no-results"><p>No tools found matching your search.</p></div>`;
+    return;
+  }
+  grid.innerHTML = filtered.map(t => `
+    <a class="tool-card" href="/tools/${t.id}/" onclick="openTool('${t.id}'); return false;" aria-label="Open ${t.name}">
+      <div class="tool-icon" aria-hidden="true">${t.icon}</div>
+      <h3>${t.name}</h3>
+      <p>${t.description}</p>
+    </a>
+  `).join('');
+}
+
+// ============================================================
+// TOOL IMPLEMENTATIONS
+// ============================================================
+
+// ---------- WORD COUNTER ----------
+function renderWordCounter(panel) {
+  panel.innerHTML = `
+    <div class="form-group">
+      <label for="wc-input">Enter or paste your text:</label>
+      <textarea id="wc-input" placeholder="Start typing or paste text here..." style="min-height:250px;"></textarea>
+    </div>
+    <div class="grid-2" id="wc-stats"></div>
+    <div class="btn-group">
+      <button class="btn btn-secondary" id="wc-clear">Clear</button>
+      <button class="btn btn-secondary" id="wc-copy">Copy Text</button>
+    </div>
+  `;
+  const input = panel.querySelector('#wc-input');
+  const stats = panel.querySelector('#wc-stats');
+  function update() {
+    const text = input.value;
+    const words = text.trim() ? text.trim().split(/\s+/).length : 0;
+    const chars = text.length;
+    const charsNoSpace = text.replace(/\s/g, '').length;
+    const sentences = text.trim() ? (text.match(/[.!?]+(\s|$)/g) || []).length || (text.trim() ? 1 : 0) : 0;
+    const paragraphs = text.trim() ? text.split(/\n\s*\n/).filter(p => p.trim()).length : 0;
+    const lines = text ? text.split('\n').length : 0;
+    const readTime = Math.ceil(words / 200);
+    stats.innerHTML = `
+      <div class="output-area visible" style="margin:0;"><h3>Words</h3><div style="font-size:1.8rem;font-weight:700;color:var(--primary);">${words}</div></div>
+      <div class="output-area visible" style="margin:0;"><h3>Characters</h3><div style="font-size:1.8rem;font-weight:700;color:var(--primary);">${chars}</div></div>
+      <div class="output-area visible" style="margin:0;"><h3>Characters (no spaces)</h3><div style="font-size:1.8rem;font-weight:700;color:var(--primary);">${charsNoSpace}</div></div>
+      <div class="output-area visible" style="margin:0;"><h3>Sentences</h3><div style="font-size:1.8rem;font-weight:700;color:var(--primary);">${sentences}</div></div>
+      <div class="output-area visible" style="margin:0;"><h3>Paragraphs</h3><div style="font-size:1.8rem;font-weight:700;color:var(--primary);">${paragraphs}</div></div>
+      <div class="output-area visible" style="margin:0;"><h3>Lines</h3><div style="font-size:1.8rem;font-weight:700;color:var(--primary);">${lines}</div></div>
+      <div class="output-area visible" style="margin:0;"><h3>Reading Time</h3><div style="font-size:1.8rem;font-weight:700;color:var(--primary);">${readTime} min</div></div>
+    `;
+  }
+  input.addEventListener('input', update);
+  panel.querySelector('#wc-clear').onclick = () => { input.value = ''; update(); };
+  panel.querySelector('#wc-copy').onclick = () => copyText(input.value);
+  update();
+}
+
+// ---------- CASE CONVERTER ----------
+function renderCaseConverter(panel) {
+  panel.innerHTML = `
+    <div class="form-group">
+      <label for="cc-input">Input text:</label>
+      <textarea id="cc-input" placeholder="Enter text to convert..."></textarea>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary" data-case="upper">UPPERCASE</button>
+      <button class="btn btn-primary" data-case="lower">lowercase</button>
+      <button class="btn btn-primary" data-case="title">Title Case</button>
+      <button class="btn btn-primary" data-case="sentence">Sentence case</button>
+      <button class="btn btn-primary" data-case="camel">camelCase</button>
+      <button class="btn btn-primary" data-case="snake">snake_case</button>
+      <button class="btn btn-primary" data-case="kebab">kebab-case</button>
+      <button class="btn btn-primary" data-case="constant">CONSTANT_CASE</button>
+      <button class="btn btn-primary" data-case="alternate">aLtErNaTiNg</button>
+      <button class="btn btn-primary" data-case="inverse">iNVERSE</button>
+    </div>
+    <div class="output-area" id="cc-output">
+      <h3>Output</h3>
+      <div class="output-content" id="cc-result"></div>
+      <div class="btn-group">
+        <button class="btn btn-secondary" id="cc-copy">Copy</button>
+        <button class="btn btn-secondary" id="cc-download">Download .txt</button>
+      </div>
+    </div>
+  `;
+  const input = panel.querySelector('#cc-input');
+  const output = panel.querySelector('#cc-output');
+  const result = panel.querySelector('#cc-result');
+
+  const converters = {
+    upper: s => s.toUpperCase(),
+    lower: s => s.toLowerCase(),
+    title: s => s.replace(/\w\S*/g, w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase()),
+    sentence: s => s.toLowerCase().replace(/(^\s*\w|[.!?]\s*\w)/g, c => c.toUpperCase()),
+    camel: s => s.toLowerCase().replace(/[^a-zA-Z0-9]+(.)/g, (_, c) => c.toUpperCase()),
+    snake: s => s.trim().toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_|_$/g, ''),
+    kebab: s => s.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''),
+    constant: s => s.trim().toUpperCase().replace(/[^A-Z0-9]+/g, '_').replace(/^_|_$/g, ''),
+    alternate: s => s.split('').map((c, i) => i % 2 ? c.toUpperCase() : c.toLowerCase()).join(''),
+    inverse: s => s.split('').map(c => c === c.toUpperCase() ? c.toLowerCase() : c.toUpperCase()).join('')
+  };
+
+  panel.querySelectorAll('[data-case]').forEach(btn => {
+    btn.onclick = () => {
+      const val = input.value;
+      if (!val) { toast('Please enter some text first', 'error'); return; }
+      const out = converters[btn.dataset.case](val);
+      result.textContent = out;
+      output.classList.add('visible');
+    };
+  });
+  panel.querySelector('#cc-copy').onclick = () => copyText(result.textContent);
+  panel.querySelector('#cc-download').onclick = () => downloadText(result.textContent, 'converted.txt');
+}
+
+// ---------- REMOVE DUPLICATES ----------
+function renderRemoveDuplicates(panel) {
+  panel.innerHTML = `
+    <div class="form-group">
+      <label for="rd-input">Enter text (one item per line):</label>
+      <textarea id="rd-input" placeholder="apple&#10;banana&#10;apple&#10;cherry&#10;banana"></textarea>
+    </div>
+    <div class="checkbox-group">
+      <input type="checkbox" id="rd-case">
+      <label for="rd-case">Case-insensitive comparison</label>
+    </div>
+    <div class="checkbox-group">
+      <input type="checkbox" id="rd-trim" checked>
+      <label for="rd-trim">Trim whitespace from each line</label>
+    </div>
+    <div class="checkbox-group">
+      <input type="checkbox" id="rd-empty">
+      <label for="rd-empty">Remove empty lines</label>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary" id="rd-run">Remove Duplicates</button>
+      <button class="btn btn-secondary" id="rd-clear">Clear</button>
+    </div>
+    <div class="output-area" id="rd-output">
+      <h3>Result</h3>
+      <div class="output-content" id="rd-result"></div>
+      <div class="btn-group">
+        <button class="btn btn-secondary" id="rd-copy">Copy</button>
+        <button class="btn btn-secondary" id="rd-download">Download .txt</button>
+      </div>
+    </div>
+  `;
+  const input = panel.querySelector('#rd-input');
+  const output = panel.querySelector('#rd-output');
+  const result = panel.querySelector('#rd-result');
+
+  panel.querySelector('#rd-run').onclick = () => {
+    let lines = input.value.split('\n');
+    if (panel.querySelector('#rd-trim').checked) lines = lines.map(l => l.trim());
+    if (panel.querySelector('#rd-empty').checked) lines = lines.filter(l => l.length > 0);
+    const caseInsensitive = panel.querySelector('#rd-case').checked;
+    const seen = new Set();
+    const unique = [];
+    for (const line of lines) {
+      const key = caseInsensitive ? line.toLowerCase() : line;
+      if (!seen.has(key)) {
+        seen.add(key);
+        unique.push(line);
+      }
+    }
+    const removed = lines.length - unique.length;
+    result.textContent = unique.join('\n');
+    output.classList.add('visible');
+    output.querySelector('h3').textContent = `Result (${unique.length} lines, ${removed} removed)`;
+  };
+  panel.querySelector('#rd-clear').onclick = () => { input.value = ''; output.classList.remove('visible'); };
+  panel.querySelector('#rd-copy').onclick = () => copyText(result.textContent);
+  panel.querySelector('#rd-download').onclick = () => downloadText(result.textContent, 'deduplicated.txt');
+}
+
+// ---------- SORT LINES ----------
+function renderSortLines(panel) {
+  panel.innerHTML = `
+    <div class="form-group">
+      <label for="sl-input">Enter text (one item per line):</label>
+      <textarea id="sl-input" placeholder="banana&#10;apple&#10;cherry&#10;date"></textarea>
+    </div>
+    <div class="grid-2">
+      <div class="form-group">
+        <label for="sl-mode">Sort mode:</label>
+        <select id="sl-mode">
+          <option value="alpha">Alphabetical (A→Z)</option>
+          <option value="alpha-desc">Alphabetical (Z→A)</option>
+          <option value="numeric">Numeric (ascending)</option>
+          <option value="numeric-desc">Numeric (descending)</option>
+          <option value="length">By length (short→long)</option>
+          <option value="length-desc">By length (long→short)</option>
+          <option value="reverse">Reverse order</option>
+          <option value="shuffle">Random shuffle</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>&nbsp;</label>
+        <div class="checkbox-group">
+          <input type="checkbox" id="sl-case">
+          <label for="sl-case">Case-insensitive</label>
+        </div>
+      </div>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary" id="sl-run">Sort</button>
+    </div>
+    <div class="output-area" id="sl-output">
+      <h3>Result</h3>
+      <div class="output-content" id="sl-result"></div>
+      <div class="btn-group">
+        <button class="btn btn-secondary" id="sl-copy">Copy</button>
+        <button class="btn btn-secondary" id="sl-download">Download .txt</button>
+      </div>
+    </div>
+  `;
+  const input = panel.querySelector('#sl-input');
+  const output = panel.querySelector('#sl-output');
+  const result = panel.querySelector('#sl-result');
+
+  panel.querySelector('#sl-run').onclick = () => {
+    let lines = input.value.split('\n').filter(l => l.length > 0);
+    const mode = panel.querySelector('#sl-mode').value;
+    const ci = panel.querySelector('#sl-case').checked;
+    const cmp = ci ? (a, b) => a.toLowerCase().localeCompare(b.toLowerCase()) : (a, b) => a.localeCompare(b);
+    switch (mode) {
+      case 'alpha': lines.sort(cmp); break;
+      case 'alpha-desc': lines.sort((a, b) => cmp(b, a)); break;
+      case 'numeric': lines.sort((a, b) => parseFloat(a) - parseFloat(b)); break;
+      case 'numeric-desc': lines.sort((a, b) => parseFloat(b) - parseFloat(a)); break;
+      case 'length': lines.sort((a, b) => a.length - b.length); break;
+      case 'length-desc': lines.sort((a, b) => b.length - a.length); break;
+      case 'reverse': lines.reverse(); break;
+      case 'shuffle':
+        for (let i = lines.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [lines[i], lines[j]] = [lines[j], lines[i]];
+        }
+        break;
+    }
+    result.textContent = lines.join('\n');
+    output.classList.add('visible');
+  };
+  panel.querySelector('#sl-copy').onclick = () => copyText(result.textContent);
+  panel.querySelector('#sl-download').onclick = () => downloadText(result.textContent, 'sorted.txt');
+}
+
+// ---------- LOREM IPSUM ----------
+function renderLoremIpsum(panel) {
+  panel.innerHTML = `
+    <div class="grid-2">
+      <div class="form-group">
+        <label for="li-type">Generate:</label>
+        <select id="li-type">
+          <option value="paragraphs">Paragraphs</option>
+          <option value="sentences">Sentences</option>
+          <option value="words">Words</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="li-count">Count:</label>
+        <input type="number" id="li-count" value="3" min="1" max="100">
+      </div>
+    </div>
+    <div class="checkbox-group">
+      <input type="checkbox" id="li-start">
+      <label for="li-start">Start with "Lorem ipsum dolor sit amet..."</label>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary" id="li-gen">Generate</button>
+    </div>
+    <div class="output-area" id="li-output">
+      <h3>Generated Text</h3>
+      <div class="output-content" id="li-result"></div>
+      <div class="btn-group">
+        <button class="btn btn-secondary" id="li-copy">Copy</button>
+        <button class="btn btn-secondary" id="li-download">Download .txt</button>
+      </div>
+    </div>
+  `;
+  const LOREM_WORDS = ('lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua enim ad minim veniam quis nostrud exercitation ullamco laboris nisi aliquip ex ea commodo consequat duis aute irure in reprehenderit voluptate velit esse cillum eu fugiat nulla pariatur excepteur sint occaecat cupidatat non proident sunt culpa qui officia deserunt mollit anim id est laborum').split(' ');
+  function randWord() { return LOREM_WORDS[Math.floor(Math.random() * LOREM_WORDS.length)]; }
+  function makeSentence() {
+    const len = 8 + Math.floor(Math.random() * 12);
+    let words = [];
+    for (let i = 0; i < len; i++) words.push(randWord());
+    let s = words.join(' ');
+    s = s.charAt(0).toUpperCase() + s.slice(1) + '.';
+    return s;
+  }
+  function makeParagraph() {
+    const len = 3 + Math.floor(Math.random() * 4);
+    let sents = [];
+    for (let i = 0; i < len; i++) sents.push(makeSentence());
+    return sents.join(' ');
+  }
+  panel.querySelector('#li-gen').onclick = () => {
+    const type = panel.querySelector('#li-type').value;
+    const count = parseInt(panel.querySelector('#li-count').value) || 1;
+    const startLorem = panel.querySelector('#li-start').checked;
+    let out = '';
+    if (type === 'paragraphs') {
+      const paras = [];
+      for (let i = 0; i < count; i++) paras.push(makeParagraph());
+      out = paras.join('\n\n');
+    } else if (type === 'sentences') {
+      const sents = [];
+      for (let i = 0; i < count; i++) sents.push(makeSentence());
+      out = sents.join(' ');
+    } else {
+      const words = [];
+      for (let i = 0; i < count; i++) words.push(randWord());
+      out = words.join(' ');
+      out = out.charAt(0).toUpperCase() + out.slice(1) + '.';
+    }
+    if (startLorem && out.length > 0) {
+      const loremStart = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ';
+      if (!out.startsWith('Lorem ipsum')) {
+        out = loremStart + out.charAt(0).toLowerCase() + out.slice(1);
+      }
+    }
+    panel.querySelector('#li-result').textContent = out;
+    panel.querySelector('#li-output').classList.add('visible');
+  };
+  panel.querySelector('#li-copy').onclick = () => copyText(panel.querySelector('#li-result').textContent);
+  panel.querySelector('#li-download').onclick = () => downloadText(panel.querySelector('#li-result').textContent, 'lorem-ipsum.txt');
+}
+
+// ---------- TEXT DIFF ----------
+function renderTextDiff(panel) {
+  panel.innerHTML = `
+    <div class="grid-2">
+      <div class="form-group">
+        <label for="td-a">Original text:</label>
+        <textarea id="td-a" placeholder="Paste original text here..."></textarea>
+      </div>
+      <div class="form-group">
+        <label for="td-b">Modified text:</label>
+        <textarea id="td-b" placeholder="Paste modified text here..."></textarea>
+      </div>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary" id="td-run">Compare</button>
+    </div>
+    <div class="output-area" id="td-output">
+      <h3>Differences</h3>
+      <div class="output-content" id="td-result" style="font-family:monospace;"></div>
+    </div>
+  `;
+  panel.querySelector('#td-run').onclick = () => {
+    const a = panel.querySelector('#td-a').value.split('\n');
+    const b = panel.querySelector('#td-b').value.split('\n');
+    const max = Math.max(a.length, b.length);
+    let html = '';
+    let same = 0, added = 0, removed = 0;
+    for (let i = 0; i < max; i++) {
+      const la = a[i], lb = b[i];
+      if (la === lb) {
+        if (la !== undefined) { html += `<div style="padding:2px 8px;color:#64748b;">  ${escapeHtml(la) || '&nbsp;'}</div>`; same++; }
+      } else {
+        if (la !== undefined) { html += `<div style="padding:2px 8px;background:#fee2e2;color:#991b1b;">- ${escapeHtml(la)}</div>`; removed++; }
+        if (lb !== undefined) { html += `<div style="padding:2px 8px;background:#d1fae5;color:#065f46;">+ ${escapeHtml(lb)}</div>`; added++; }
+      }
+    }
+    panel.querySelector('#td-result').innerHTML = html || '<em>No differences</em>';
+    panel.querySelector('#td-output').querySelector('h3').textContent = `Differences (${same} same, ${added} added, ${removed} removed)`;
+    panel.querySelector('#td-output').classList.add('visible');
+  };
+}
+
+// ---------- IMAGE COMPRESSOR ----------
+function renderImageCompressor(panel) {
+  panel.innerHTML = `
+    <div class="drop-zone" id="ic-drop">
+      <span class="drop-zone-icon">🖼️</span>
+      <p><strong>Click to select</strong> or drag & drop an image</p>
+      <small>Supports JPG, PNG, WebP — processed locally in your browser</small>
+      <input type="file" id="ic-file" accept="image/*" style="display:none;">
+    </div>
+    <div id="ic-info"></div>
+    <div class="form-group" style="margin-top:20px;">
+      <label for="ic-quality">Quality: <span class="range-value" id="ic-qval">80%</span></label>
+      <input type="range" id="ic-quality" min="10" max="100" value="80">
+    </div>
+    <div class="form-group">
+      <label for="ic-format">Output format:</label>
+      <select id="ic-format">
+        <option value="image/jpeg">JPEG</option>
+        <option value="image/webp">WebP</option>
+        <option value="image/png">PNG (lossless)</option>
+      </select>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary" id="ic-run" disabled>Compress Image</button>
+    </div>
+    <div class="output-area" id="ic-output">
+      <h3>Result</h3>
+      <div id="ic-result"></div>
+    </div>
+  `;
+  const drop = panel.querySelector('#ic-drop');
+  const fileInput = panel.querySelector('#ic-file');
+  const info = panel.querySelector('#ic-info');
+  const qval = panel.querySelector('#ic-qval');
+  const quality = panel.querySelector('#ic-quality');
+  const runBtn = panel.querySelector('#ic-run');
+  const output = panel.querySelector('#ic-output');
+  let currentFile = null;
+
+  function setFile(file) {
+    if (!file || !file.type.startsWith('image/')) { toast('Please select a valid image file', 'error'); return; }
+    currentFile = file;
+    const url = URL.createObjectURL(file);
+    info.innerHTML = `
+      <div class="file-info">
+        <img src="${url}" style="width:48px;height:48px;object-fit:cover;border-radius:6px;" alt="">
+        <div>
+          <div style="font-weight:600;">${escapeHtml(file.name)}</div>
+          <div style="color:var(--text-muted);font-size:0.8rem;">${formatBytes(file.size)} • ${file.type}</div>
+        </div>
+        <button class="remove" id="ic-remove" aria-label="Remove file">×</button>
+      </div>
+    `;
+    panel.querySelector('#ic-remove').onclick = () => {
+      currentFile = null;
+      info.innerHTML = '';
+      runBtn.disabled = true;
+      URL.revokeObjectURL(url);
+    };
+    runBtn.disabled = false;
+  }
+
+  drop.onclick = () => fileInput.click();
+  fileInput.onchange = e => setFile(e.target.files[0]);
+  drop.ondragover = e => { e.preventDefault(); drop.classList.add('dragover'); };
+  drop.ondragleave = () => drop.classList.remove('dragover');
+  drop.ondrop = e => { e.preventDefault(); drop.classList.remove('dragover'); setFile(e.dataTransfer.files[0]); };
+  quality.oninput = () => qval.textContent = quality.value + '%';
+
+  runBtn.onclick = async () => {
+    if (!currentFile) return;
+    runBtn.disabled = true;
+    runBtn.innerHTML = '<span class="spinner"></span> Compressing...';
+    try {
+      const { img } = await loadImage(currentFile);
+      const canvas = document.createElement('canvas');
+      canvas.width = img.naturalWidth;
+      canvas.height = img.naturalHeight;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0);
+      const format = panel.querySelector('#ic-format').value;
+      const q = parseInt(quality.value) / 100;
+      const blob = await new Promise(res => canvas.toBlob(res, format, format === 'image/png' ? undefined : q));
+      const ext = format === 'image/jpeg' ? 'jpg' : format === 'image/webp' ? 'webp' : 'png';
+      const origSize = currentFile.size;
+      const newSize = blob.size;
+      const saved = ((1 - newSize / origSize) * 100).toFixed(1);
+      output.querySelector('#ic-result').innerHTML = `
+        <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center;">
+          <img src="${URL.createObjectURL(blob)}" style="max-width:200px;max-height:200px;border-radius:8px;" alt="Compressed preview">
+          <div>
+            <p><strong>Original:</strong> ${formatBytes(origSize)}</p>
+            <p><strong>Compressed:</strong> ${formatBytes(newSize)}</p>
+            <p style="color:var(--success);font-weight:600;"><strong>Saved:</strong> ${saved}%</p>
+            <button class="btn btn-primary" style="margin-top:8px;" id="ic-download">Download Compressed</button>
+          </div>
+        </div>
+      `;
+      output.classList.add('visible');
+      panel.querySelector('#ic-download').onclick = () => {
+        downloadBlob(blob, 'compressed-' + currentFile.name.replace(/\.[^.]+$/, '') + '.' + ext);
+      };
+    } catch (e) {
+      toast('Compression failed: ' + e.message, 'error');
+    }
+    runBtn.disabled = false;
+    runBtn.textContent = 'Compress Image';
+  };
+}
+
+// ---------- IMAGE RESIZER ----------
+function renderImageResizer(panel) {
+  panel.innerHTML = `
+    <div class="drop-zone" id="ir-drop">
+      <span class="drop-zone-icon">📐</span>
+      <p><strong>Click to select</strong> or drag & drop an image</p>
+      <small>Resize by exact dimensions or percentage</small>
+      <input type="file" id="ir-file" accept="image/*" style="display:none;">
+    </div>
+    <div id="ir-info"></div>
+    <div class="grid-2" style="margin-top:20px;">
+      <div class="form-group">
+        <label for="ir-width">Width (px):</label>
+        <input type="number" id="ir-width" min="1" value="800">
+      </div>
+      <div class="form-group">
+        <label for="ir-height">Height (px):</label>
+        <input type="number" id="ir-height" min="1" value="600">
+      </div>
+    </div>
+    <div class="checkbox-group">
+      <input type="checkbox" id="ir-aspect" checked>
+      <label for="ir-aspect">Maintain aspect ratio</label>
+    </div>
+    <div class="form-group">
+      <label>Or resize by percentage:</label>
+      <div style="display:flex;gap:8px;align-items:center;">
+        <input type="number" id="ir-pct" min="1" max="500" value="50" style="flex:1;">
+        <span>%</span>
+        <button class="btn btn-secondary" id="ir-apply-pct">Apply</button>
+      </div>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary" id="ir-run" disabled>Resize Image</button>
+    </div>
+    <div class="output-area" id="ir-output">
+      <h3>Result</h3>
+      <div id="ir-result"></div>
+    </div>
+  `;
+  const drop = panel.querySelector('#ir-drop');
+  const fileInput = panel.querySelector('#ir-file');
+  const info = panel.querySelector('#ir-info');
+  const runBtn = panel.querySelector('#ir-run');
+  const output = panel.querySelector('#ir-output');
+  let currentFile = null;
+  let naturalW = 0, naturalH = 0;
+  const wInput = panel.querySelector('#ir-width');
+  const hInput = panel.querySelector('#ir-height');
+  const aspect = panel.querySelector('#ir-aspect');
+
+  function setFile(file) {
+    if (!file || !file.type.startsWith('image/')) { toast('Please select a valid image', 'error'); return; }
+    currentFile = file;
+    loadImage(file).then(({ img }) => {
+      naturalW = img.naturalWidth;
+      naturalH = img.naturalHeight;
+      wInput.value = naturalW;
+      hInput.value = naturalH;
+      info.innerHTML = `
+        <div class="file-info">
+          <img src="${img.src}" style="width:48px;height:48px;object-fit:cover;border-radius:6px;" alt="">
+          <div>
+            <div style="font-weight:600;">${escapeHtml(file.name)}</div>
+            <div style="color:var(--text-muted);font-size:0.8rem;">${naturalW} × ${naturalH} px • ${formatBytes(file.size)}</div>
+          </div>
+        </div>
+      `;
+      runBtn.disabled = false;
+    });
+  }
+
+  wInput.oninput = () => {
+    if (aspect.checked && naturalW) hInput.value = Math.round(naturalH * (parseInt(wInput.value) / naturalW)) || 1;
+  };
+  hInput.oninput = () => {
+    if (aspect.checked && naturalH) wInput.value = Math.round(naturalW * (parseInt(hInput.value) / naturalH)) || 1;
+  };
+  panel.querySelector('#ir-apply-pct').onclick = () => {
+    const pct = parseInt(panel.querySelector('#ir-pct').value) || 100;
+    wInput.value = Math.round(naturalW * pct / 100);
+    hInput.value = Math.round(naturalH * pct / 100);
+  };
+
+  drop.onclick = () => fileInput.click();
+  fileInput.onchange = e => setFile(e.target.files[0]);
+  drop.ondragover = e => { e.preventDefault(); drop.classList.add('dragover'); };
+  drop.ondragleave = () => drop.classList.remove('dragover');
+  drop.ondrop = e => { e.preventDefault(); drop.classList.remove('dragover'); setFile(e.dataTransfer.files[0]); };
+
+  runBtn.onclick = async () => {
+    if (!currentFile) return;
+    runBtn.disabled = true;
+    runBtn.innerHTML = '<span class="spinner"></span> Resizing...';
+    try {
+      const { img } = await loadImage(currentFile);
+      const w = parseInt(wInput.value) || naturalW;
+      const h = parseInt(hInput.value) || naturalH;
+      const canvas = document.createElement('canvas');
+      canvas.width = w;
+      canvas.height = h;
+      const ctx = canvas.getContext('2d');
+      ctx.imageSmoothingQuality = 'high';
+      ctx.drawImage(img, 0, 0, w, h);
+      const blob = await new Promise(res => canvas.toBlob(res, currentFile.type === 'image/png' ? 'image/png' : 'image/jpeg', 0.92));
+      const url = URL.createObjectURL(blob);
+      output.querySelector('#ir-result').innerHTML = `
+        <p><strong>New dimensions:</strong> ${w} × ${h} px</p>
+        <p><strong>File size:</strong> ${formatBytes(blob.size)}</p>
+        <img src="${url}" class="img-preview" alt="Resized preview">
+        <div class="btn-group">
+          <button class="btn btn-primary" id="ir-download">Download Resized</button>
+        </div>
+      `;
+      output.classList.add('visible');
+      panel.querySelector('#ir-download').onclick = () => {
+        const ext = currentFile.type === 'image/png' ? 'png' : 'jpg';
+        downloadBlob(blob, `resized-${w}x${h}.${ext}`);
+      };
+    } catch (e) {
+      toast('Resize failed: ' + e.message, 'error');
+    }
+    runBtn.disabled = false;
+    runBtn.textContent = 'Resize Image';
+  };
+}
+
+// ---------- IMAGE FORMAT CONVERTER ----------
+function renderImageConverter(panel) {
+  panel.innerHTML = `
+    <div class="drop-zone" id="icv-drop">
+      <span class="drop-zone-icon">🔄</span>
+      <p><strong>Click to select</strong> or drag & drop an image</p>
+      <small>Convert between JPG, PNG, and WebP</small>
+      <input type="file" id="icv-file" accept="image/*" style="display:none;">
+    </div>
+    <div id="icv-info"></div>
+    <div class="form-group" style="margin-top:20px;">
+      <label for="icv-format">Convert to:</label>
+      <select id="icv-format">
+        <option value="image/jpeg">JPEG (.jpg)</option>
+        <option value="image/png">PNG (.png)</option>
+        <option value="image/webp">WebP (.webp)</option>
+      </select>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary" id="icv-run" disabled>Convert</button>
+    </div>
+    <div class="output-area" id="icv-output">
+      <h3>Result</h3>
+      <div id="icv-result"></div>
+    </div>
+  `;
+  const drop = panel.querySelector('#icv-drop');
+  const fileInput = panel.querySelector('#icv-file');
+  const info = panel.querySelector('#icv-info');
+  const runBtn = panel.querySelector('#icv-run');
+  const output = panel.querySelector('#icv-output');
+  let currentFile = null;
+
+  function setFile(file) {
+    if (!file || !file.type.startsWith('image/')) { toast('Please select a valid image', 'error'); return; }
+    currentFile = file;
+    loadImage(file).then(({ img }) => {
+      info.innerHTML = `
+        <div class="file-info">
+          <img src="${img.src}" style="width:48px;height:48px;object-fit:cover;border-radius:6px;" alt="">
+          <div>
+            <div style="font-weight:600;">${escapeHtml(file.name)}</div>
+            <div style="color:var(--text-muted);font-size:0.8rem;">${file.type} • ${formatBytes(file.size)}</div>
+          </div>
+        </div>
+      `;
+      runBtn.disabled = false;
+    });
+  }
+
+  drop.onclick = () => fileInput.click();
+  fileInput.onchange = e => setFile(e.target.files[0]);
+  drop.ondragover = e => { e.preventDefault(); drop.classList.add('dragover'); };
+  drop.ondragleave = () => drop.classList.remove('dragover');
+  drop.ondrop = e => { e.preventDefault(); drop.classList.remove('dragover'); setFile(e.dataTransfer.files[0]); };
+
+  runBtn.onclick = async () => {
+    if (!currentFile) return;
+    runBtn.disabled = true;
+    runBtn.innerHTML = '<span class="spinner"></span> Converting...';
+    try {
+      const { img } = await loadImage(currentFile);
+      const canvas = document.createElement('canvas');
+      canvas.width = img.naturalWidth;
+      canvas.height = img.naturalHeight;
+      const ctx = canvas.getContext('2d');
+      // White background for JPEG (no transparency)
+      const targetFormat = panel.querySelector('#icv-format').value;
+      if (targetFormat === 'image/jpeg') {
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+      }
+      ctx.drawImage(img, 0, 0);
+      const blob = await new Promise(res => canvas.toBlob(res, targetFormat, 0.92));
+      const ext = targetFormat === 'image/jpeg' ? 'jpg' : targetFormat === 'image/png' ? 'png' : 'webp';
+      output.querySelector('#icv-result').innerHTML = `
+        <p><strong>Converted to:</strong> ${ext.toUpperCase()}</p>
+        <p><strong>New size:</strong> ${formatBytes(blob.size)}</p>
+        <img src="${URL.createObjectURL(blob)}" class="img-preview" alt="Converted preview">
+        <div class="btn-group">
+          <button class="btn btn-primary" id="icv-download">Download</button>
+        </div>
+      `;
+      output.classList.add('visible');
+      panel.querySelector('#icv-download').onclick = () => {
+        downloadBlob(blob, currentFile.name.replace(/\.[^.]+$/, '') + '.' + ext);
+      };
+    } catch (e) {
+      toast('Conversion failed: ' + e.message, 'error');
+    }
+    runBtn.disabled = false;
+    runBtn.textContent = 'Convert';
+  };
+}
+
+// ---------- IMAGE TO BASE64 ----------
+function renderImageToBase64(panel) {
+  panel.innerHTML = `
+    <div class="drop-zone" id="ib-drop">
+      <span class="drop-zone-icon">🔗</span>
+      <p><strong>Click to select</strong> or drag & drop an image</p>
+      <small>Get a Base64 data URI for embedding</small>
+      <input type="file" id="ib-file" accept="image/*" style="display:none;">
+    </div>
+    <div id="ib-info"></div>
+    <div class="form-group" style="margin-top:20px;">
+      <label for="ib-output-type">Output format:</label>
+      <select id="ib-output-type">
+        <option value="datauri">Data URI (for HTML/CSS src)</option>
+        <option value="raw">Raw Base64 (no prefix)</option>
+        <option value="css">CSS background-image</option>
+        <option value="html">HTML img tag</option>
+      </select>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary" id="ib-run" disabled>Generate Base64</button>
+    </div>
+    <div class="output-area" id="ib-output">
+      <h3>Base64 Output</h3>
+      <div class="output-content" id="ib-result"></div>
+      <div class="btn-group">
+        <button class="btn btn-secondary" id="ib-copy">Copy</button>
+      </div>
+    </div>
+  `;
+  const drop = panel.querySelector('#ib-drop');
+  const fileInput = panel.querySelector('#ib-file');
+  const info = panel.querySelector('#ib-info');
+  const runBtn = panel.querySelector('#ib-run');
+  const output = panel.querySelector('#ib-output');
+  let currentFile = null;
+
+  function setFile(file) {
+    if (!file || !file.type.startsWith('image/')) { toast('Please select a valid image', 'error'); return; }
+    currentFile = file;
+    const url = URL.createObjectURL(file);
+    info.innerHTML = `
+      <div class="file-info">
+        <img src="${url}" style="width:48px;height:48px;object-fit:cover;border-radius:6px;" alt="">
+        <div>
+          <div style="font-weight:600;">${escapeHtml(file.name)}</div>
+          <div style="color:var(--text-muted);font-size:0.8rem;">${formatBytes(file.size)}</div>
+        </div>
+      </div>
+    `;
+    runBtn.disabled = false;
+  }
+
+  drop.onclick = () => fileInput.click();
+  fileInput.onchange = e => setFile(e.target.files[0]);
+  drop.ondragover = e => { e.preventDefault(); drop.classList.add('dragover'); };
+  drop.ondragleave = () => drop.classList.remove('dragover');
+  drop.ondrop = e => { e.preventDefault(); drop.classList.remove('dragover'); setFile(e.dataTransfer.files[0]); };
+
+  runBtn.onclick = async () => {
+    if (!currentFile) return;
+    const dataUri = await readFileAsDataURL(currentFile);
+    const type = panel.querySelector('#ib-output-type').value;
+    let out;
+    if (type === 'datauri') out = dataUri;
+    else if (type === 'raw') out = dataUri.split(',')[1];
+    else if (type === 'css') out = `background-image: url("${dataUri}");`;
+    else out = `<img src="${dataUri}" alt="${escapeHtml(currentFile.name)}">`;
+    panel.querySelector('#ib-result').textContent = out;
+    output.classList.add('visible');
+  };
+  panel.querySelector('#ib-copy').onclick = () => copyText(panel.querySelector('#ib-result').textContent);
+}
+
+// ---------- IMAGES TO PDF ----------
+function renderImagesToPdf(panel) {
+  panel.innerHTML = `
+    <div class="drop-zone" id="ip-drop">
+      <span class="drop-zone-icon">📑</span>
+      <p><strong>Click to select</strong> or drag & drop multiple images</p>
+      <small>Combine JPG/PNG images into a single PDF (processed locally)</small>
+      <input type="file" id="ip-file" accept="image/*" multiple style="display:none;">
+    </div>
+    <div id="ip-list" style="margin-top:16px;"></div>
+    <div class="grid-2" style="margin-top:16px;">
+      <div class="form-group">
+        <label for="ip-page">Page size:</label>
+        <select id="ip-page">
+          <option value="fit">Fit to image</option>
+          <option value="a4">A4 (portrait)</option>
+          <option value="letter">Letter (portrait)</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="ip-orient">Orientation:</label>
+        <select id="ip-orient">
+          <option value="portrait">Portrait</option>
+          <option value="landscape">Landscape</option>
+        </select>
+      </div>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary" id="ip-run" disabled>Generate PDF</button>
+      <button class="btn btn-secondary" id="ip-clear">Clear All</button>
+    </div>
+    <div class="output-area" id="ip-output">
+      <h3>PDF Ready</h3>
+      <div id="ip-result"></div>
+    </div>
+  `;
+  const drop = panel.querySelector('#ip-drop');
+  const fileInput = panel.querySelector('#ip-file');
+  const list = panel.querySelector('#ip-list');
+  const runBtn = panel.querySelector('#ip-run');
+  const output = panel.querySelector('#ip-output');
+  let files = [];
+
+  function renderList() {
+    if (files.length === 0) { list.innerHTML = ''; runBtn.disabled = true; return; }
+    list.innerHTML = files.map((f, i) => `
+      <div class="file-info">
+        <img src="${f.url}" style="width:40px;height:40px;object-fit:cover;border-radius:6px;" alt="">
+        <span style="flex:1;">${escapeHtml(f.file.name)} <small style="color:var(--text-muted);">(${formatBytes(f.file.size)})</small></span>
+        <button class="remove" data-idx="${i}" aria-label="Remove">×</button>
+      </div>
+    `).join('');
+    list.querySelectorAll('.remove').forEach(btn => {
+      btn.onclick = () => {
+        const i = parseInt(btn.dataset.idx);
+        URL.revokeObjectURL(files[i].url);
+        files.splice(i, 1);
+        renderList();
+      };
+    });
+    runBtn.disabled = files.length === 0;
+  }
+
+  function addFiles(newFiles) {
+    for (const f of newFiles) {
+      if (f.type.startsWith('image/')) {
+        files.push({ file: f, url: URL.createObjectURL(f) });
+      }
+    }
+    renderList();
+  }
+
+  drop.onclick = () => fileInput.click();
+  fileInput.onchange = e => addFiles(e.target.files);
+  drop.ondragover = e => { e.preventDefault(); drop.classList.add('dragover'); };
+  drop.ondragleave = () => drop.classList.remove('dragover');
+  drop.ondrop = e => { e.preventDefault(); drop.classList.remove('dragover'); addFiles(e.dataTransfer.files); };
+
+  panel.querySelector('#ip-clear').onclick = () => {
+    files.forEach(f => URL.revokeObjectURL(f.url));
+    files = [];
+    renderList();
+    output.classList.remove('visible');
+  };
+
+  runBtn.onclick = async () => {
+    if (files.length === 0) return;
+    runBtn.disabled = true;
+    runBtn.innerHTML = '<span class="spinner"></span> Generating PDF...';
+    try {
+      // Use jsPDF from CDN
+      if (!window.jspdf) {
+        await loadScript('https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js');
+      }
+      const { jsPDF } = window.jspdf;
+      const pageSize = panel.querySelector('#ip-page').value;
+      const orient = panel.querySelector('#ip-orient').value;
+      let pdf = null;
+
+      for (const { file } of files) {
+        const dataUrl = await readFileAsDataURL(file);
+        const { img } = await loadImage(file);
+        let pageW, pageH;
+        if (pageSize === 'fit') {
+          pageW = img.naturalWidth;
+          pageH = img.naturalHeight;
+        } else if (pageSize === 'a4') {
+          if (orient === 'portrait') { pageW = 595.28; pageH = 841.89; }
+          else { pageW = 841.89; pageH = 595.28; }
+        } else { // letter
+          if (orient === 'portrait') { pageW = 612; pageH = 792; }
+          else { pageW = 792; pageH = 612; }
+        }
+        if (!pdf) {
+          pdf = new jsPDF({ orientation: orient, unit: 'pt', format: [pageW, pageH] });
+        } else {
+          pdf.addPage([pageW, pageH], orient);
+        }
+        const ratio = Math.min(pageW / img.naturalWidth, pageH / img.naturalHeight);
+        const w = img.naturalWidth * ratio;
+        const h = img.naturalHeight * ratio;
+        const x = (pageW - w) / 2;
+        const y = (pageH - h) / 2;
+        const format = file.type === 'image/png' ? 'PNG' : 'JPEG';
+        pdf.addImage(dataUrl, format, x, y, w, h);
+      }
+
+      const blob = pdf.output('blob');
+      output.querySelector('#ip-result').innerHTML = `
+        <p><strong>${files.length}</strong> image(s) combined into PDF</p>
+        <p><strong>File size:</strong> ${formatBytes(blob.size)}</p>
+        <button class="btn btn-primary" id="ip-download">Download PDF</button>
+      `;
+      output.classList.add('visible');
+      panel.querySelector('#ip-download').onclick = () => {
+        downloadBlob(blob, 'toolnest-images.pdf');
+      };
+    } catch (e) {
+      toast('PDF generation failed: ' + e.message, 'error');
+    }
+    runBtn.disabled = false;
+    runBtn.textContent = 'Generate PDF';
+  };
+}
+
+function loadScript(src) {
+  return new Promise((resolve, reject) => {
+    const s = document.createElement('script');
+    s.src = src;
+    s.onload = resolve;
+    s.onerror = reject;
+    document.head.appendChild(s);
+  });
+}
+
+// ---------- JSON FORMATTER ----------
+function renderJsonFormatter(panel) {
+  panel.innerHTML = `
+    <div class="form-group">
+      <label for="jf-input">JSON input:</label>
+      <textarea id="jf-input" placeholder='{"name":"ToolNest","tools":25,"free":true}'></textarea>
+    </div>
+    <div class="grid-2">
+      <div class="form-group">
+        <label for="jf-indent">Indentation:</label>
+        <select id="jf-indent">
+          <option value="2">2 spaces</option>
+          <option value="4">4 spaces</option>
+          <option value="tab">Tab</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>&nbsp;</label>
+        <div class="checkbox-group">
+          <input type="checkbox" id="jf-sort">
+          <label for="jf-sort">Sort keys alphabetically</label>
+        </div>
+      </div>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary" id="jf-format">Format</button>
+      <button class="btn btn-primary" id="jf-minify">Minify</button>
+      <button class="btn btn-secondary" id="jf-validate">Validate</button>
+      <button class="btn btn-secondary" id="jf-sample">Load Sample</button>
+      <button class="btn btn-secondary" id="jf-clear">Clear</button>
+    </div>
+    <div class="output-area" id="jf-output">
+      <h3 id="jf-status">Output</h3>
+      <div class="output-content" id="jf-result"></div>
+      <div class="btn-group">
+        <button class="btn btn-secondary" id="jf-copy">Copy</button>
+        <button class="btn btn-secondary" id="jf-download">Download .json</button>
+      </div>
+    </div>
+  `;
+  const input = panel.querySelector('#jf-input');
+  const output = panel.querySelector('#jf-output');
+  const result = panel.querySelector('#jf-result');
+  const status = panel.querySelector('#jf-status');
+
+  function parseInput() {
+    try {
+      return { data: JSON.parse(input.value), error: null };
+    } catch (e) {
+      return { data: null, error: e.message };
+    }
+  }
+
+  panel.querySelector('#jf-format').onclick = () => {
+    const { data, error } = parseInput();
+    if (error) { toast('Invalid JSON: ' + error, 'error'); return; }
+    const indentVal = panel.querySelector('#jf-indent').value;
+    const indent = indentVal === 'tab' ? '\t' : parseInt(indentVal);
+    let obj = data;
+    if (panel.querySelector('#jf-sort').checked) obj = sortObjectKeys(data);
+    result.textContent = JSON.stringify(obj, null, indent);
+    status.textContent = 'Formatted JSON ✓';
+    output.classList.add('visible');
+  };
+  panel.querySelector('#jf-minify').onclick = () => {
+    const { data, error } = parseInput();
+    if (error) { toast('Invalid JSON: ' + error, 'error'); return; }
+    result.textContent = JSON.stringify(data);
+    status.textContent = 'Minified JSON ✓';
+    output.classList.add('visible');
+  };
+  panel.querySelector('#jf-validate').onclick = () => {
+    const { error } = parseInput();
+    if (error) {
+      status.textContent = '❌ Invalid JSON';
+      result.textContent = error;
+      toast('Invalid JSON', 'error');
+    } else {
+      status.textContent = '✓ Valid JSON';
+      result.textContent = 'The input is valid JSON.';
+      toast('Valid JSON!', 'success');
+    }
+    output.classList.add('visible');
+  };
+  panel.querySelector('#jf-sample').onclick = () => {
+    input.value = JSON.stringify({
+      name: "ToolNest",
+      version: "1.0.0",
+      tools: ["JSON Formatter", "Base64", "Hash Generator"],
+      free: true,
+      meta: { author: "ToolNest", year: 2025 }
+    }, null, 2);
+  };
+  panel.querySelector('#jf-clear').onclick = () => { input.value = ''; output.classList.remove('visible'); };
+  panel.querySelector('#jf-copy').onclick = () => copyText(result.textContent);
+  panel.querySelector('#jf-download').onclick = () => downloadText(result.textContent, 'formatted.json');
+}
+
+function sortObjectKeys(obj) {
+  if (Array.isArray(obj)) return obj.map(sortObjectKeys);
+  if (obj && typeof obj === 'object') {
+    return Object.keys(obj).sort().reduce((acc, key) => {
+      acc[key] = sortObjectKeys(obj[key]);
+      return acc;
+    }, {});
+  }
+  return obj;
+}
+
+// ---------- BASE64 ----------
+function renderBase64(panel) {
+  panel.innerHTML = `
+    <div class="form-group">
+      <label for="b64-input">Text input:</label>
+      <textarea id="b64-input" placeholder="Enter text to encode or Base64 to decode..."></textarea>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary" id="b64-encode">Encode → Base64</button>
+      <button class="btn btn-primary" id="b64-decode">Decode ← Base64</button>
+      <button class="btn btn-secondary" id="b64-swap">Swap Input/Output</button>
+      <button class="btn btn-secondary" id="b64-clear">Clear</button>
+    </div>
+    <div class="output-area" id="b64-output">
+      <h3 id="b64-status">Output</h3>
+      <div class="output-content" id="b64-result"></div>
+      <div class="btn-group">
+        <button class="btn btn-secondary" id="b64-copy">Copy</button>
+      </div>
+    </div>
+  `;
+  const input = panel.querySelector('#b64-input');
+  const output = panel.querySelector('#b64-output');
+  const result = panel.querySelector('#b64-result');
+  const status = panel.querySelector('#b64-status');
+
+  function b64Encode(str) {
+    return btoa(unescape(encodeURIComponent(str)));
+  }
+  function b64Decode(str) {
+    return decodeURIComponent(escape(atob(str)));
+  }
+
+  panel.querySelector('#b64-encode').onclick = () => {
+    try {
+      result.textContent = b64Encode(input.value);
+      status.textContent = 'Encoded (Base64) ✓';
+      output.classList.add('visible');
+    } catch (e) { toast('Encoding failed: ' + e.message, 'error'); }
+  };
+  panel.querySelector('#b64-decode').onclick = () => {
+    try {
+      result.textContent = b64Decode(input.value.trim());
+      status.textContent = 'Decoded ✓';
+      output.classList.add('visible');
+    } catch (e) { toast('Invalid Base64 string', 'error'); }
+  };
+  panel.querySelector('#b64-swap').onclick = () => {
+    if (result.textContent) {
+      input.value = result.textContent;
+      result.textContent = '';
+      output.classList.remove('visible');
+    }
+  };
+  panel.querySelector('#b64-clear').onclick = () => { input.value = ''; result.textContent = ''; output.classList.remove('visible'); };
+  panel.querySelector('#b64-copy').onclick = () => copyText(result.textContent);
+}
+
+// ---------- URL ENCODER ----------
+function renderUrlEncoder(panel) {
+  panel.innerHTML = `
+    <div class="form-group">
+      <label for="ue-input">URL or text:</label>
+      <textarea id="ue-input" placeholder="https://example.com/path with spaces?q=hello world&lang=en"></textarea>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary" id="ue-encode">Encode (encodeURIComponent)</button>
+      <button class="btn btn-primary" id="ue-encode-uri">Encode URI (encodeURI)</button>
+      <button class="btn btn-primary" id="ue-decode">Decode</button>
+      <button class="btn btn-secondary" id="ue-clear">Clear</button>
+    </div>
+    <div class="output-area" id="ue-output">
+      <h3>Output</h3>
+      <div class="output-content" id="ue-result"></div>
+      <div class="btn-group">
+        <button class="btn btn-secondary" id="ue-copy">Copy</button>
+      </div>
+    </div>
+  `;
+  const input = panel.querySelector('#ue-input');
+  const output = panel.querySelector('#ue-output');
+  const result = panel.querySelector('#ue-result');
+
+  panel.querySelector('#ue-encode').onclick = () => {
+    result.textContent = encodeURIComponent(input.value);
+    output.classList.add('visible');
+  };
+  panel.querySelector('#ue-encode-uri').onclick = () => {
+    result.textContent = encodeURI(input.value);
+    output.classList.add('visible');
+  };
+  panel.querySelector('#ue-decode').onclick = () => {
+    try {
+      result.textContent = decodeURIComponent(input.value);
+      output.classList.add('visible');
+    } catch (e) { toast('Invalid encoded URL', 'error'); }
+  };
+  panel.querySelector('#ue-clear').onclick = () => { input.value = ''; output.classList.remove('visible'); };
+  panel.querySelector('#ue-copy').onclick = () => copyText(result.textContent);
+}
+
+// ---------- HASH GENERATOR ----------
+function renderHashGenerator(panel) {
+  panel.innerHTML = `
+    <div class="form-group">
+      <label for="hg-input">Text input:</label>
+      <textarea id="hg-input" placeholder="Enter text to hash..."></textarea>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary" id="hg-run" disabled>Generate Hashes</button>
+    </div>
+    <div id="hg-results" style="margin-top:20px;"></div>
+  `;
+  const input = panel.querySelector('#hg-input');
+  const runBtn = panel.querySelector('#hg-run');
+  const results = panel.querySelector('#hg-results');
+
+  input.addEventListener('input', () => runBtn.disabled = !input.value);
+
+  async function hashText(algo, text) {
+    const enc = new TextEncoder();
+    const data = enc.encode(text);
+    const hashBuffer = await crypto.subtle.digest(algo, data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+  }
+
+  runBtn.onclick = async () => {
+    runBtn.disabled = true;
+    runBtn.innerHTML = '<span class="spinner"></span> Hashing...';
+    const text = input.value;
+    const algos = [
+      { name: 'SHA-1', id: 'SHA-1' },
+      { name: 'SHA-256', id: 'SHA-256' },
+      { name: 'SHA-384', id: 'SHA-384' },
+      { name: 'SHA-512', id: 'SHA-512' }
+    ];
+    results.innerHTML = '';
+    for (const a of algos) {
+      const hash = await hashText(a.id, text);
+      const div = document.createElement('div');
+      div.className = 'output-area visible';
+      div.style.marginTop = '12px';
+      div.innerHTML = `
+        <h3 style="display:flex;justify-content:space-between;align-items:center;">
+          ${a.name}
+          <button class="btn btn-secondary" style="padding:4px 12px;font-size:0.8rem;">Copy</button>
+        </h3>
+        <div class="output-content">${hash}</div>
+      `;
+      div.querySelector('button').onclick = () => copyText(hash);
+      results.appendChild(div);
+    }
+    runBtn.disabled = false;
+    runBtn.textContent = 'Generate Hashes';
+  };
+}
+
+// ---------- UUID GENERATOR ----------
+function renderUuidGenerator(panel) {
+  panel.innerHTML = `
+    <div class="grid-2">
+      <div class="form-group">
+        <label for="uuid-count">How many UUIDs?</label>
+        <input type="number" id="uuid-count" value="5" min="1" max="1000">
+      </div>
+      <div class="form-group">
+        <label for="uuid-case">Case:</label>
+        <select id="uuid-case">
+          <option value="lower">lowercase</option>
+          <option value="upper">UPPERCASE</option>
+        </select>
+      </div>
+    </div>
+    <div class="checkbox-group">
+      <input type="checkbox" id="uuid-hyphens" checked>
+      <label for="uuid-hyphens">Include hyphens</label>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary" id="uuid-run">Generate UUIDs</button>
+    </div>
+    <div class="output-area" id="uuid-output">
+      <h3>Generated UUIDs</h3>
+      <div class="output-content" id="uuid-result"></div>
+      <div class="btn-group">
+        <button class="btn btn-secondary" id="uuid-copy">Copy All</button>
+        <button class="btn btn-secondary" id="uuid-download">Download .txt</button>
+      </div>
+    </div>
+  `;
+  panel.querySelector('#uuid-run').onclick = () => {
+    const count = Math.min(Math.max(parseInt(panel.querySelector('#uuid-count').value) || 1, 1), 1000);
+    const upper = panel.querySelector('#uuid-case').value === 'upper';
+    const hyphens = panel.querySelector('#uuid-hyphens').checked;
+    const uuids = [];
+    for (let i = 0; i < count; i++) {
+      let id = crypto.randomUUID ? crypto.randomUUID() : 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {
+        const r = Math.random() * 16 | 0;
+        const v = c === 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+      });
+      if (!hyphens) id = id.replace(/-/g, '');
+      if (upper) id = id.toUpperCase();
+      uuids.push(id);
+    }
+    panel.querySelector('#uuid-result').textContent = uuids.join('\n');
+    panel.querySelector('#uuid-output').classList.add('visible');
+  };
+  panel.querySelector('#uuid-copy').onclick = () => copyText(panel.querySelector('#uuid-result').textContent);
+  panel.querySelector('#uuid-download').onclick = () => downloadText(panel.querySelector('#uuid-result').textContent, 'uuids.txt');
+}
+
+// ---------- COLOR PICKER ----------
+function renderColorPicker(panel) {
+  panel.innerHTML = `
+    <div class="grid-2">
+      <div class="form-group">
+        <label for="cp-picker">Pick a color:</label>
+        <input type="color" id="cp-picker" value="#6366f1" style="width:100%;height:60px;border-radius:8px;border:1px solid var(--border);cursor:pointer;">
+      </div>
+      <div class="form-group">
+        <label for="cp-hex">HEX:</label>
+        <input type="text" id="cp-hex" value="#6366f1">
+      </div>
+    </div>
+    <div id="cp-info" style="margin-top:20px;"></div>
+    <div style="margin-top:20px;">
+      <label style="display:block;margin-bottom:8px;font-weight:500;font-size:0.9rem;">Preview:</label>
+      <div id="cp-preview" style="height:100px;border-radius:12px;border:1px solid var(--border);"></div>
+    </div>
+    <div style="margin-top:20px;">
+      <label style="display:block;margin-bottom:8px;font-weight:500;font-size:0.9rem;">Shades:</label>
+      <div id="cp-shades" style="display:grid;grid-template-columns:repeat(10,1fr);gap:4px;"></div>
+    </div>
+  `;
+  const picker = panel.querySelector('#cp-picker');
+  const hexInput = panel.querySelector('#cp-hex');
+  const info = panel.querySelector('#cp-info');
+  const preview = panel.querySelector('#cp-preview');
+  const shades = panel.querySelector('#cp-shades');
+
+  function hexToRgb(hex) {
+    const m = hex.match(/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i);
+    return m ? { r: parseInt(m[1], 16), g: parseInt(m[2], 16), b: parseInt(m[3], 16) } : null;
+  }
+  function rgbToHsl(r, g, b) {
+    r /= 255; g /= 255; b /= 255;
+    const max = Math.max(r, g, b), min = Math.min(r, g, b);
+    let h, s, l = (max + min) / 2;
+    if (max === min) { h = s = 0; }
+    else {
+      const d = max - min;
+      s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+      switch (max) {
+        case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+        case g: h = (b - r) / d + 2; break;
+        case b: h = (r - g) / d + 4; break;
+      }
+      h /= 6;
+    }
+    return { h: Math.round(h * 360), s: Math.round(s * 100), l: Math.round(l * 100) };
+  }
+
+  function update(hex) {
+    if (!/^#[0-9a-f]{6}$/i.test(hex)) hex = '#' + hex.replace('#', '').padEnd(6, '0').slice(0, 6);
+    const rgb = hexToRgb(hex);
+    if (!rgb) return;
+    const hsl = rgbToHsl(rgb.r, rgb.g, rgb.b);
+    info.innerHTML = `
+      <div class="output-area visible" style="margin:0 0 8px 0;"><h3>HEX</h3><div style="font-family:monospace;font-size:1.1rem;">${hex.toUpperCase()}</div></div>
+      <div class="output-area visible" style="margin:0 0 8px 0;"><h3>RGB</h3><div style="font-family:monospace;font-size:1.1rem;">rgb(${rgb.r}, ${rgb.g}, ${rgb.b})</div></div>
+      <div class="output-area visible" style="margin:0 0 8px 0;"><h3>HSL</h3><div style="font-family:monospace;font-size:1.1rem;">hsl(${hsl.h}, ${hsl.s}%, ${hsl.l}%)</div></div>
+      <div class="output-area visible" style="margin:0;"><h3>RGBA</h3><div style="font-family:monospace;font-size:1.1rem;">rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 1)</div></div>
+    `;
+    preview.style.background = hex;
+    // Shades
+    let shadeHtml = '';
+    for (let i = 0; i <= 9; i++) {
+      const factor = i / 9;
+      const r = Math.round(rgb.r + (255 - rgb.r) * factor);
+      const g = Math.round(rgb.g + (255 - rgb.g) * factor);
+      const b = Math.round(rgb.b + (255 - rgb.b) * factor);
+      const sh = '#' + [r, g, b].map(v => v.toString(16).padStart(2, '0')).join('');
+      shadeHtml += `<div style="height:40px;border-radius:6px;background:${sh};cursor:pointer;border:1px solid var(--border);" title="${sh}" onclick="navigator.clipboard.writeText('${sh}');toast('Copied ${sh}','success')"></div>`;
+    }
+    for (let i = 9; i >= 0; i--) {
+      const factor = i / 9 * 0.9;
+      const r = Math.round(rgb.r * (1 - factor));
+      const g = Math.round(rgb.g * (1 - factor));
+      const b = Math.round(rgb.b * (1 - factor));
+      const sh = '#' + [r, g, b].map(v => v.toString(16).padStart(2, '0')).join('');
+      shadeHtml += `<div style="height:40px;border-radius:6px;background:${sh};cursor:pointer;border:1px solid var(--border);" title="${sh}" onclick="navigator.clipboard.writeText('${sh}');toast('Copied ${sh}','success')"></div>`;
+    }
+    shades.innerHTML = shadeHtml;
+  }
+
+  picker.oninput = () => { hexInput.value = picker.value; update(picker.value); };
+  hexInput.oninput = () => {
+    let v = hexInput.value.trim();
+    if (!v.startsWith('#')) v = '#' + v;
+    if (/^#[0-9a-f]{6}$/i.test(v)) { picker.value = v; update(v); }
+  };
+  // Click on info to copy
+  info.addEventListener('click', e => {
+    const content = e.target.closest('.output-area')?.querySelector('.output-content, div[style*="monospace"]')?.textContent;
+    if (content) copyText(content);
+  });
+  update('#6366f1');
+}
+
+// ---------- QR GENERATOR ----------
+function renderQrGenerator(panel) {
+  panel.innerHTML = `
+    <div class="form-group">
+      <label for="qr-text">Text or URL to encode:</label>
+      <textarea id="qr-text" placeholder="https://example.com" style="min-height:100px;">https://toolnest.app</textarea>
+    </div>
+    <div class="grid-2">
+      <div class="form-group">
+        <label for="qr-size">Size (px):</label>
+        <input type="number" id="qr-size" value="300" min="100" max="1000">
+      </div>
+      <div class="form-group">
+        <label for="qr-level">Error correction:</label>
+        <select id="qr-level">
+          <option value="L">Low (7%)</option>
+          <option value="M" selected>Medium (15%)</option>
+          <option value="Q">Quartile (25%)</option>
+          <option value="H">High (30%)</option>
+        </select>
+      </div>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary" id="qr-run">Generate QR Code</button>
+    </div>
+    <div class="output-area" id="qr-output">
+      <h3>QR Code</h3>
+      <div id="qr-result" style="text-align:center;padding:20px;"></div>
+      <div class="btn-group" style="justify-content:center;">
+        <button class="btn btn-primary" id="qr-download">Download PNG</button>
+      </div>
+    </div>
+  `;
+  panel.querySelector('#qr-run').onclick = async () => {
+    const text = panel.querySelector('#qr-text').value.trim();
+    if (!text) { toast('Please enter text or URL', 'error'); return; }
+    const size = parseInt(panel.querySelector('#qr-size').value) || 300;
+    const level = panel.querySelector('#qr-level').value;
+    try {
+      if (!window.QRCode) {
+        await loadScript('https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js');
+      }
+      const container = panel.querySelector('#qr-result');
+      container.innerHTML = '';
+      const canvas = document.createElement('canvas');
+      container.appendChild(canvas);
+      new QRCode(canvas, {
+        text: text,
+        width: size,
+        height: size,
+        colorDark: '#1e293b',
+        colorLight: '#ffffff',
+        correctLevel: QRCode.CorrectLevel[level]
+      });
+      // Wait for QR to render then extract
+      setTimeout(() => {
+        const qrCanvas = container.querySelector('canvas');
+        if (qrCanvas) {
+          // QRCode.js renders into canvas; get data URL
+          const dataUrl = qrCanvas.toDataURL('image/png');
+          panel.querySelector('#qr-output').classList.add('visible');
+          panel.querySelector('#qr-download').onclick = () => {
+            const a = document.createElement('a');
+            a.href = dataUrl;
+            a.download = 'qrcode.png';
+            a.click();
+          };
+        }
+      }, 100);
+    } catch (e) {
+      toast('QR generation failed: ' + e.message, 'error');
+    }
+  };
+}
+
+// ---------- UNIT CONVERTER ----------
+function renderUnitConverter(panel) {
+  panel.innerHTML = `
+    <div class="grid-2">
+      <div class="form-group">
+        <label for="uc-category">Category:</label>
+        <select id="uc-category">
+          <option value="length">Length</option>
+          <option value="weight">Weight / Mass</option>
+          <option value="temperature">Temperature</option>
+          <option value="area">Area</option>
+          <option value="volume">Volume</option>
+          <option value="speed">Speed</option>
+          <option value="time">Time</option>
+          <option value="data">Digital Storage</option>
+        </select>
+      </div>
+    </div>
+    <div class="grid-2">
+      <div class="form-group">
+        <label for="uc-from">From:</label>
+        <input type="number" id="uc-from" value="1" step="any">
+        <select id="uc-from-unit" style="margin-top:8px;"></select>
+      </div>
+      <div class="form-group">
+        <label for="uc-to">To:</label>
+        <input type="text" id="uc-to" readonly style="background:#eef2ff;font-weight:600;">
+        <select id="uc-to-unit" style="margin-top:8px;"></select>
+      </div>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-secondary" id="uc-swap">⇄ Swap Units</button>
+      <button class="btn btn-primary" id="uc-copy">Copy Result</button>
+    </div>
+    <div id="uc-formula" style="margin-top:16px;padding:12px;background:var(--bg);border-radius:8px;font-size:0.85rem;color:var(--text-muted);display:none;"></div>
+  `;
+
+  const UNITS = {
+    length: {
+      name: 'Length',
+      units: {
+        m: { name: 'Meters', factor: 1 },
+        km: { name: 'Kilometers', factor: 1000 },
+        cm: { name: 'Centimeters', factor: 0.01 },
+        mm: { name: 'Millimeters', factor: 0.001 },
+        mi: { name: 'Miles', factor: 1609.344 },
+        yd: { name: 'Yards', factor: 0.9144 },
+        ft: { name: 'Feet', factor: 0.3048 },
+        in: { name: 'Inches', factor: 0.0254 },
+        nmi: { name: 'Nautical Miles', factor: 1852 }
+      }
+    },
+    weight: {
+      name: 'Weight',
+      units: {
+        kg: { name: 'Kilograms', factor: 1 },
+        g: { name: 'Grams', factor: 0.001 },
+        mg: { name: 'Milligrams', factor: 0.000001 },
+        t: { name: 'Metric Tons', factor: 1000 },
+        lb: { name: 'Pounds', factor: 0.453592 },
+        oz: { name: 'Ounces', factor: 0.0283495 },
+        st: { name: 'Stones', factor: 6.35029 }
+      }
+    },
+    temperature: {
+      name: 'Temperature',
+      special: true,
+      units: {
+        c: { name: 'Celsius (°C)' },
+        f: { name: 'Fahrenheit (°F)' },
+        k: { name: 'Kelvin (K)' }
+      }
+    },
+    area: {
+      name: 'Area',
+      units: {
+        m2: { name: 'Square Meters', factor: 1 },
+        km2: { name: 'Square Kilometers', factor: 1000000 },
+        cm2: { name: 'Square Centimeters', factor: 0.0001 },
+        ha: { name: 'Hectares', factor: 10000 },
+        acre: { name: 'Acres', factor: 4046.86 },
+        ft2: { name: 'Square Feet', factor: 0.092903 },
+        in2: { name: 'Square Inches', factor: 0.00064516 },
+        mi2: { name: 'Square Miles', factor: 2589988.11 }
+      }
+    },
+    volume: {
+      name: 'Volume',
+      units: {
+        l: { name: 'Liters', factor: 1 },
+        ml: { name: 'Milliliters', factor: 0.001 },
+        m3: { name: 'Cubic Meters', factor: 1000 },
+        gal: { name: 'US Gallons', factor: 3.78541 },
+        qt: { name: 'US Quarts', factor: 0.946353 },
+        pt: { name: 'US Pints', factor: 0.473176 },
+        cup: { name: 'US Cups', factor: 0.236588 },
+        floz: { name: 'US Fluid Ounces', factor: 0.0295735 }
+      }
+    },
+    speed: {
+      name: 'Speed',
+      units: {
+        mps: { name: 'Meters/second', factor: 1 },
+        kmph: { name: 'Kilometers/hour', factor: 0.277778 },
+        mph: { name: 'Miles/hour', factor: 0.44704 },
+        knot: { name: 'Knots', factor: 0.514444 },
+        fps: { name: 'Feet/second', factor: 0.3048 }
+      }
+    },
+    time: {
+      name: 'Time',
+      units: {
+        s: { name: 'Seconds', factor: 1 },
+        ms: { name: 'Milliseconds', factor: 0.001 },
+        min: { name: 'Minutes', factor: 60 },
+        h: { name: 'Hours', factor: 3600 },
+        d: { name: 'Days', factor: 86400 },
+        wk: { name: 'Weeks', factor: 604800 },
+        mo: { name: 'Months (30d)', factor: 2592000 },
+        yr: { name: 'Years (365d)', factor: 31536000 }
+      }
+    },
+    data: {
+      name: 'Digital Storage',
+      units: {
+        b: { name: 'Bytes', factor: 1 },
+        kb: { name: 'Kilobytes', factor: 1024 },
+        mb: { name: 'Megabytes', factor: 1048576 },
+        gb: { name: 'Gigabytes', factor: 1073741824 },
+        tb: { name: 'Terabytes', factor: 1099511627776 },
+        bit: { name: 'Bits', factor: 0.125 }
+      }
+    }
+  };
+
+  const category = panel.querySelector('#uc-category');
+  const fromUnit = panel.querySelector('#uc-from-unit');
+  const toUnit = panel.querySelector('#uc-to-unit');
+  const fromVal = panel.querySelector('#uc-from');
+  const toVal = panel.querySelector('#uc-to');
+  const formula = panel.querySelector('#uc-formula');
+
+  function populateUnits() {
+    const cat = UNITS[category.value];
+    const opts = Object.entries(cat.units).map(([k, v]) => `<option value="${k}">${v.name}</option>`).join('');
+    fromUnit.innerHTML = opts;
+    toUnit.innerHTML = opts;
+    if (Object.keys(cat.units).length > 1) toUnit.selectedIndex = 1;
+    convert();
+  }
+
+  function convert() {
+    const cat = UNITS[category.value];
+    const f = fromUnit.value, t = toUnit.value;
+    const val = parseFloat(fromVal.value) || 0;
+    let result;
+    if (cat.special && category.value === 'temperature') {
+      // Convert to Celsius first
+      let celsius;
+      if (f === 'c') celsius = val;
+      else if (f === 'f') celsius = (val - 32) * 5 / 9;
+      else if (f === 'k') celsius = val - 273.15;
+      // Convert from Celsius to target
+      if (t === 'c') result = celsius;
+      else if (t === 'f') result = celsius * 9 / 5 + 32;
+      else if (t === 'k') result = celsius + 273.15;
+      formula.textContent = `${val} ${cat.units[f].name} = ${result.toFixed(4)} ${cat.units[t].name}`;
+    } else {
+      result = val * cat.units[f].factor / cat.units[t].factor;
+      formula.textContent = `${val} ${cat.units[f].name} = ${result.toPrecision(8).replace(/\.?0+$/, '')} ${cat.units[t].name}`;
+    }
+    toVal.value = result.toPrecision(8).replace(/\.?0+$/, '');
+    formula.style.display = 'block';
+  }
+
+  category.onchange = populateUnits;
+  fromUnit.onchange = convert;
+  toUnit.onchange = convert;
+  fromVal.oninput = convert;
+  panel.querySelector('#uc-swap').onclick = () => {
+    const f = fromUnit.value;
+    fromUnit.value = toUnit.value;
+    toUnit.value = f;
+    convert();
+  };
+  panel.querySelector('#uc-copy').onclick = () => copyText(toVal.value);
+  populateUnits();
+}
+
+// ---------- NUMBER BASE ----------
+function renderNumberBase(panel) {
+  panel.innerHTML = `
+    <div class="form-group">
+      <label for="nb-input">Enter a number:</label>
+      <input type="text" id="nb-input" value="255" style="font-family:monospace;font-size:1.1rem;">
+    </div>
+    <div class="form-group">
+      <label for="nb-base">Input base:</label>
+      <select id="nb-base">
+        <option value="2">Binary (2)</option>
+        <option value="8">Octal (8)</option>
+        <option value="10" selected>Decimal (10)</option>
+        <option value="16">Hexadecimal (16)</option>
+      </select>
+    </div>
+    <div id="nb-results" style="margin-top:20px;"></div>
+  `;
+  const input = panel.querySelector('#nb-input');
+  const base = panel.querySelector('#nb-base');
+  const results = panel.querySelector('#nb-results');
+
+  function update() {
+    const val = input.value.trim();
+    const b = parseInt(base.value);
+    if (!val) { results.innerHTML = ''; return; }
+    const num = parseInt(val, b);
+    if (isNaN(num)) {
+      results.innerHTML = '<p style="color:var(--error);">Invalid number for the selected base.</p>';
+      return;
+    }
+    const bases = [
+      { name: 'Binary', b: 2, prefix: '0b' },
+      { name: 'Octal', b: 8, prefix: '0o' },
+      { name: 'Decimal', b: 10, prefix: '' },
+      { name: 'Hexadecimal', b: 16, prefix: '0x' }
+    ];
+    results.innerHTML = bases.map(x => `
+      <div class="output-area visible" style="margin-bottom:8px;">
+        <h3 style="display:flex;justify-content:space-between;align-items:center;">
+          ${x.name} (base ${x.b})
+          <button class="btn btn-secondary" style="padding:4px 12px;font-size:0.8rem;" data-copy="${num.toString(x.b).toUpperCase()}">Copy</button>
+        </h3>
+        <div style="font-family:monospace;font-size:1.1rem;word-break:break-all;">${x.prefix}${num.toString(x.b).toUpperCase()}</div>
+      </div>
+    `).join('');
+    results.querySelectorAll('[data-copy]').forEach(btn => {
+      btn.onclick = () => copyText(btn.dataset.copy);
+    });
+  }
+  input.oninput = update;
+  base.onchange = update;
+  update();
+}
+
+// ---------- PASSWORD GENERATOR ----------
+function renderPasswordGenerator(panel) {
+  panel.innerHTML = `
+    <div class="form-group">
+      <label for="pw-length">Password length: <span class="range-value" id="pw-len-val">16</span></label>
+      <input type="range" id="pw-length" min="4" max="128" value="16">
+    </div>
+    <div class="checkbox-group">
+      <input type="checkbox" id="pw-upper" checked>
+      <label for="pw-upper">Include uppercase (A-Z)</label>
+    </div>
+    <div class="checkbox-group">
+      <input type="checkbox" id="pw-lower" checked>
+      <label for="pw-lower">Include lowercase (a-z)</label>
+    </div>
+    <div class="checkbox-group">
+      <input type="checkbox" id="pw-numbers" checked>
+      <label for="pw-numbers">Include numbers (0-9)</label>
+    </div>
+    <div class="checkbox-group">
+      <input type="checkbox" id="pw-symbols" checked>
+      <label for="pw-symbols">Include symbols (!@#$%^&*)</label>
+    </div>
+    <div class="checkbox-group">
+      <input type="checkbox" id="pw-exclude">
+      <label for="pw-exclude">Exclude ambiguous characters (0O1lI)</label>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary" id="pw-gen">Generate Password</button>
+    </div>
+    <div class="output-area" id="pw-output">
+      <h3>Generated Password</h3>
+      <div class="output-content" id="pw-result" style="font-size:1.2rem;text-align:center;padding:20px;"></div>
+      <div id="pw-strength" style="margin-top:12px;text-align:center;font-weight:600;"></div>
+      <div class="btn-group" style="justify-content:center;">
+        <button class="btn btn-primary" id="pw-copy">Copy</button>
+        <button class="btn btn-secondary" id="pw-regen">Regenerate</button>
+      </div>
+    </div>
+    <div class="output-area" id="pw-bulk-output">
+      <h3>Generate Multiple</h3>
+      <div class="form-group">
+        <label for="pw-count">How many passwords?</label>
+        <input type="number" id="pw-count" value="10" min="1" max="100">
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-secondary" id="pw-bulk">Generate List</button>
+      </div>
+      <div class="output-content" id="pw-bulk-result" style="margin-top:12px;"></div>
+      <div class="btn-group" id="pw-bulk-actions" style="display:none;">
+        <button class="btn btn-secondary" id="pw-bulk-copy">Copy All</button>
+        <button class="btn btn-secondary" id="pw-bulk-download">Download .txt</button>
+      </div>
+    </div>
+  `;
+  const lenSlider = panel.querySelector('#pw-length');
+  const lenVal = panel.querySelector('#pw-len-val');
+  lenSlider.oninput = () => lenVal.textContent = lenSlider.value;
+
+  function getCharset() {
+    let chars = '';
+    if (panel.querySelector('#pw-upper').checked) chars += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    if (panel.querySelector('#pw-lower').checked) chars += 'abcdefghijklmnopqrstuvwxyz';
+    if (panel.querySelector('#pw-numbers').checked) chars += '0123456789';
+    if (panel.querySelector('#pw-symbols').checked) chars += '!@#$%^&*()_+-=[]{}|;:,.<>?';
+    if (panel.querySelector('#pw-exclude').checked) chars = chars.replace(/[0O1lI]/g, '');
+    return chars;
+  }
+
+  function generatePassword(length, chars) {
+    if (!chars) return '';
+    const array = new Uint32Array(length);
+    crypto.getRandomValues(array);
+    let pw = '';
+    for (let i = 0; i < length; i++) {
+      pw += chars[array[i] % chars.length];
+    }
+    return pw;
+  }
+
+  function estimateStrength(pw) {
+    let pool = 0;
+    if (/[a-z]/.test(pw)) pool += 26;
+    if (/[A-Z]/.test(pw)) pool += 26;
+    if (/[0-9]/.test(pw)) pool += 10;
+    if (/[^a-zA-Z0-9]/.test(pw)) pool += 32;
+    const entropy = pw.length * Math.log2(pool || 1);
+    if (entropy < 28) return { label: 'Very Weak', color: '#ef4444' };
+    if (entropy < 36) return { label: 'Weak', color: '#f97316' };
+    if (entropy < 60) return { label: 'Fair', color: '#eab308' };
+    if (entropy < 80) return { label: 'Strong', color: '#22c55e' };
+    return { label: 'Very Strong', color: '#10b981' };
+  }
+
+  function generate() {
+    const chars = getCharset();
+    if (!chars) { toast('Please select at least one character set', 'error'); return; }
+    const length = parseInt(lenSlider.value);
+    const pw = generatePassword(length, chars);
+    panel.querySelector('#pw-result').textContent = pw;
+    const strength = estimateStrength(pw);
+    panel.querySelector('#pw-strength').innerHTML = `<span style="color:${strength.color};">● ${strength.label}</span> (${length} characters)`;
+    panel.querySelector('#pw-output').classList.add('visible');
+  }
+
+  panel.querySelector('#pw-gen').onclick = generate;
+  panel.querySelector('#pw-regen').onclick = generate;
+  panel.querySelector('#pw-copy').onclick = () => copyText(panel.querySelector('#pw-result').textContent);
+  panel.querySelector('#pw-bulk').onclick = () => {
+    const chars = getCharset();
+    if (!chars) { toast('Please select at least one character set', 'error'); return; }
+    const length = parseInt(lenSlider.value);
+    const count = Math.min(Math.max(parseInt(panel.querySelector('#pw-count').value) || 1, 1), 100);
+    const list = [];
+    for (let i = 0; i < count; i++) list.push(generatePassword(length, chars));
+    panel.querySelector('#pw-bulk-result').textContent = list.join('\n');
+    panel.querySelector('#pw-bulk-actions').style.display = 'flex';
+    panel.querySelector('#pw-bulk-copy').onclick = () => copyText(list.join('\n'));
+    panel.querySelector('#pw-bulk-download').onclick = () => downloadText(list.join('\n'), 'passwords.txt');
+  };
+  generate();
+}
+
+// ---------- QR SCANNER ----------
+function renderQrScanner(panel) {
+  panel.innerHTML = `
+    <p style="margin-bottom:16px;color:var(--text-muted);">Upload an image containing a QR code to scan it. All processing is done locally.</p>
+    <div class="drop-zone" id="qs-drop">
+      <span class="drop-zone-icon">📷</span>
+      <p><strong>Click to select</strong> or drag & drop an image with a QR code</p>
+      <input type="file" id="qs-file" accept="image/*" style="display:none;">
+    </div>
+    <div id="qs-info"></div>
+    <div class="output-area" id="qs-output">
+      <h3>Scanned Result</h3>
+      <div class="output-content" id="qs-result"></div>
+      <div class="btn-group">
+        <button class="btn btn-secondary" id="qs-copy">Copy</button>
+        <button class="btn btn-secondary" id="qs-open">Open URL</button>
+      </div>
+    </div>
+  `;
+  const drop = panel.querySelector('#qs-drop');
+  const fileInput = panel.querySelector('#qs-file');
+  const info = panel.querySelector('#qs-info');
+  const output = panel.querySelector('#qs-output');
+  const result = panel.querySelector('#qs-result');
+
+  async function scan(file) {
+    if (!file || !file.type.startsWith('image/')) { toast('Please select an image', 'error'); return; }
+    const url = URL.createObjectURL(file);
+    info.innerHTML = `<div class="file-info"><img src="${url}" style="width:48px;height:48px;object-fit:cover;border-radius:6px;" alt=""><span>${escapeHtml(file.name)}</span></div>`;
+    try {
+      if (!window.jsQR) {
+        await loadScript('https://cdnjs.cloudflare.com/ajax/libs/jsQR/1.4.0/jsQR.min.js');
+      }
+      const { img } = await loadImage(file);
+      const canvas = document.createElement('canvas');
+      canvas.width = img.naturalWidth;
+      canvas.height = img.naturalHeight;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0);
+      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      const code = jsQR(imageData.data, imageData.width, imageData.height);
+      if (code && code.data) {
+        result.textContent = code.data;
+        output.classList.add('visible');
+        panel.querySelector('#qs-copy').onclick = () => copyText(code.data);
+        panel.querySelector('#qs-open').onclick = () => {
+          if (/^https?:\/\//i.test(code.data)) window.open(code.data, '_blank', 'noopener,noreferrer');
+          else toast('Not a valid URL', 'error');
+        };
+        toast('QR code scanned!', 'success');
+      } else {
+        toast('No QR code found in the image', 'error');
+        output.classList.remove('visible');
+      }
+    } catch (e) {
+      toast('Scan failed: ' + e.message, 'error');
+    }
+  }
+
+  drop.onclick = () => fileInput.click();
+  fileInput.onchange = e => scan(e.target.files[0]);
+  drop.ondragover = e => { e.preventDefault(); drop.classList.add('dragover'); };
+  drop.ondragleave = () => drop.classList.remove('dragover');
+  drop.ondrop = e => { e.preventDefault(); drop.classList.remove('dragover'); scan(e.dataTransfer.files[0]); };
+}
+
+// ---------- STOPWATCH ----------
+function renderStopwatch(panel) {
+  panel.innerHTML = `
+    <div style="text-align:center;padding:32px 0;">
+      <div id="sw-display" style="font-size:4rem;font-weight:700;font-variant-numeric:tabular-nums;font-family:monospace;color:var(--primary);">00:00:00.00</div>
+    </div>
+    <div class="btn-group" style="justify-content:center;">
+      <button class="btn btn-primary" id="sw-start">Start</button>
+      <button class="btn btn-secondary" id="sw-lap" disabled>Lap</button>
+      <button class="btn btn-secondary" id="sw-reset">Reset</button>
+    </div>
+    <div class="output-area" id="sw-laps-output" style="display:none;">
+      <h3>Laps</h3>
+      <div class="output-content" id="sw-laps"></div>
+    </div>
+  `;
+  let startTime = 0, elapsed = 0, running = false, rafId = null, laps = [];
+  const display = panel.querySelector('#sw-display');
+  const startBtn = panel.querySelector('#sw-start');
+  const lapBtn = panel.querySelector('#sw-lap');
+  const resetBtn = panel.querySelector('#sw-reset');
+  const lapsOutput = panel.querySelector('#sw-laps-output');
+  const lapsDiv = panel.querySelector('#sw-laps');
+
+  function fmt(ms) {
+    const h = Math.floor(ms / 3600000);
+    const m = Math.floor(ms % 3600000 / 60000);
+    const s = Math.floor(ms % 60000 / 1000);
+    const cs = Math.floor(ms % 1000 / 10);
+    return `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}.${String(cs).padStart(2,'0')}`;
+  }
+
+  function tick() {
+    if (!running) return;
+    const now = performance.now();
+    display.textContent = fmt(elapsed + (now - startTime));
+    rafId = requestAnimationFrame(tick);
+  }
+
+  startBtn.onclick = () => {
+    if (running) {
+      // Pause
+      running = false;
+      elapsed += performance.now() - startTime;
+      cancelAnimationFrame(rafId);
+      startBtn.textContent = 'Resume';
+      startBtn.classList.remove('btn-primary');
+      startBtn.classList.add('btn-secondary');
+      lapBtn.disabled = true;
+    } else {
+      running = true;
+      startTime = performance.now();
+      rafId = requestAnimationFrame(tick);
+      startBtn.textContent = 'Pause';
+      startBtn.classList.add('btn-primary');
+      startBtn.classList.remove('btn-secondary');
+      lapBtn.disabled = false;
+    }
+  };
+
+  lapBtn.onclick = () => {
+    if (!running && elapsed === 0) return;
+    const current = running ? elapsed + (performance.now() - startTime) : elapsed;
+    laps.push(current);
+    lapsOutput.style.display = 'block';
+    const prev = laps.length > 1 ? laps[laps.length - 2] : 0;
+    const diff = current - prev;
+    lapsDiv.textContent = laps.map((l, i) => {
+      const d = i === 0 ? l : l - laps[i - 1];
+      return `Lap ${i + 1}: ${fmt(l)} (+${fmt(d)})`;
+    }).join('\n');
+  };
+
+  resetBtn.onclick = () => {
+    running = false;
+    cancelAnimationFrame(rafId);
+    elapsed = 0;
+    startTime = 0;
+    laps = [];
+    display.textContent = '00:00:00.00';
+    startBtn.textContent = 'Start';
+    startBtn.classList.add('btn-primary');
+    startBtn.classList.remove('btn-secondary');
+    lapBtn.disabled = true;
+    lapsOutput.style.display = 'none';
+    lapsDiv.textContent = '';
+  };
+}
+
+// ---------- RANDOM NUMBER ----------
+function renderRandomNumber(panel) {
+  panel.innerHTML = `
+    <div class="grid-2">
+      <div class="form-group">
+        <label for="rn-min">Minimum:</label>
+        <input type="number" id="rn-min" value="1">
+      </div>
+      <div class="form-group">
+        <label for="rn-max">Maximum:</label>
+        <input type="number" id="rn-max" value="100">
+      </div>
+    </div>
+    <div class="grid-2">
+      <div class="form-group">
+        <label for="rn-count">How many numbers?</label>
+        <input type="number" id="rn-count" value="1" min="1" max="1000">
+      </div>
+      <div class="form-group">
+        <label>&nbsp;</label>
+        <div class="checkbox-group">
+          <input type="checkbox" id="rn-unique">
+          <label for="rn-unique">Unique numbers only</label>
+        </div>
+      </div>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary" id="rn-run">Generate</button>
+    </div>
+    <div class="output-area" id="rn-output">
+      <h3>Random Numbers</h3>
+      <div class="output-content" id="rn-result" style="font-size:1.5rem;text-align:center;letter-spacing:2px;"></div>
+      <div class="btn-group" style="justify-content:center;">
+        <button class="btn btn-secondary" id="rn-copy">Copy</button>
+      </div>
+    </div>
+  `;
+  panel.querySelector('#rn-run').onclick = () => {
+    const min = parseInt(panel.querySelector('#rn-min').value) || 0;
+    const max = parseInt(panel.querySelector('#rn-max').value) || 100;
+    const count = Math.min(Math.max(parseInt(panel.querySelector('#rn-count').value) || 1, 1), 1000);
+    const unique = panel.querySelector('#rn-unique').checked;
+    const range = max - min + 1;
+    if (min > max) { toast('Minimum must be less than maximum', 'error'); return; }
+    if (unique && count > range) { toast(`Cannot generate ${count} unique numbers from a range of ${range}`, 'error'); return; }
+    const nums = [];
+    if (unique) {
+      const pool = new Set();
+      while (pool.size < count) pool.add(Math.floor(Math.random() * range) + min);
+      nums.push(...pool);
+    } else {
+      for (let i = 0; i < count; i++) nums.push(Math.floor(Math.random() * range) + min);
+    }
+    panel.querySelector('#rn-result').textContent = nums.join('  ');
+    panel.querySelector('#rn-output').classList.add('visible');
+  };
+  panel.querySelector('#rn-copy').onclick = () => copyText(panel.querySelector('#rn-result').textContent);
+}
+
+// ---------- PERCENTAGE CALCULATOR ----------
+function renderPercentageCalc(panel) {
+  panel.innerHTML = `
+    <div class="form-group">
+      <label for="pc-mode">Calculation type:</label>
+      <select id="pc-mode">
+        <option value="of">What is X% of Y?</option>
+        <option value="is">X is what percent of Y?</option>
+        <option value="change">Percentage change from X to Y</option>
+        <option value="increase">Increase X by Y%</option>
+        <option value="decrease">Decrease X by Y%</option>
+        <option value="reverse">X is Y% of what number?</option>
+      </select>
+    </div>
+    <div class="grid-2">
+      <div class="form-group">
+        <label for="pc-a" id="pc-a-label">Value X:</label>
+        <input type="number" id="pc-a" value="25" step="any">
+      </div>
+      <div class="form-group">
+        <label for="pc-b" id="pc-b-label">Value Y:</label>
+        <input type="number" id="pc-b" value="200" step="any">
+      </div>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary" id="pc-run">Calculate</button>
+    </div>
+    <div class="output-area" id="pc-output">
+      <h3>Result</h3>
+      <div id="pc-result" style="font-size:2rem;font-weight:700;color:var(--primary);text-align:center;padding:16px;"></div>
+      <div id="pc-formula" style="text-align:center;color:var(--text-muted);font-family:monospace;"></div>
+    </div>
+  `;
+  const mode = panel.querySelector('#pc-mode');
+  const aInput = panel.querySelector('#pc-a');
+  const bInput = panel.querySelector('#pc-b');
+  const aLabel = panel.querySelector('#pc-a-label');
+  const bLabel = panel.querySelector('#pc-b-label');
+  const output = panel.querySelector('#pc-output');
+  const result = panel.querySelector('#pc-result');
+  const formula = panel.querySelector('#pc-formula');
+
+  function updateLabels() {
+    const m = mode.value;
+    if (m === 'of') { aLabel.textContent = 'Percentage X (%):'; bLabel.textContent = 'Of number Y:'; }
+    else if (m === 'is') { aLabel.textContent = 'Value X:'; bLabel.textContent = 'Total Y:'; }
+    else if (m === 'change') { aLabel.textContent = 'Original X:'; bLabel.textContent = 'New Y:'; }
+    else if (m === 'increase') { aLabel.textContent = 'Number X:'; bLabel.textContent = 'Increase by Y (%):'; }
+    else if (m === 'decrease') { aLabel.textContent = 'Number X:'; bLabel.textContent = 'Decrease by Y (%):'; }
+    else if (m === 'reverse') { aLabel.textContent = 'Value X:'; bLabel.textContent = 'Is Y% of:'; }
+  }
+
+  panel.querySelector('#pc-run').onclick = () => {
+    const a = parseFloat(aInput.value) || 0;
+    const b = parseFloat(bInput.value) || 0;
+    const m = mode.value;
+    let res, f;
+    if (m === 'of') { res = a / 100 * b; f = `${a}% × ${b} = ${res}`; }
+    else if (m === 'is') { res = a / b * 100; f = `${a} ÷ ${b} × 100 = ${res.toFixed(4)}%`; res = res.toFixed(4) + '%'; }
+    else if (m === 'change') { res = (b - a) / a * 100; f = `(${b} - ${a}) ÷ ${a} × 100 = ${res.toFixed(4)}%`; res = (res >= 0 ? '+' : '') + res.toFixed(4) + '%'; }
+    else if (m === 'increase') { res = a * (1 + b / 100); f = `${a} × (1 + ${b}/100) = ${res}`; }
+    else if (m === 'decrease') { res = a * (1 - b / 100); f = `${a} × (1 - ${b}/100) = ${res}`; }
+    else if (m === 'reverse') { res = a / (b / 100); f = `${a} ÷ (${b}/100) = ${res}`; }
+    result.textContent = typeof res === 'number' ? res.toLocaleString(undefined, { maximumFractionDigits: 6 }) : res;
+    formula.textContent = f;
+    output.classList.add('visible');
+  };
+  mode.onchange = () => { updateLabels(); output.classList.remove('visible'); };
+  updateLabels();
+}
+
+// ============================================================
+// INIT
+// ============================================================
+function init() {
+  document.getElementById('copyright-year').textContent = new Date().getFullYear();
+  renderCategories();
+  renderTools();
+
+  document.getElementById('searchInput').addEventListener('input', e => {
+    state.searchTerm = e.target.value;
+    renderTools();
+  });
+
+  const route = window.location.pathname.match(/^\/tools\/([^/]+)\/?$/);
+  if (route && TOOLS.find(t => t.id === route[1])) {
+    openTool(route[1]);
+  }
+}
+
+window.addEventListener('popstate', () => {
+  const route = window.location.pathname.match(/^\/tools\/([^/]+)\/?$/);
+  if (route && TOOLS.some(t => t.id === route[1])) openTool(route[1]);
+  else showHome();
+});
+
+document.addEventListener('DOMContentLoaded', init);
+
+// Global exposure for inline handlers
+window.showHome = showHome;
+window.openTool = openTool;
+window.setCategory = setCategory;
+window.toast = toast;
+</script>
+<script src="/assets/js/extra-tools.js" defer></script>
+</body>
+</html>
