@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>ToolNest</title>
+  <script>
+    const base = location.pathname.includes('/toolnest/') ? '/toolnest' : '';
+    const route = location.pathname + location.search + location.hash;
+    location.replace(`${base}/?route=${encodeURIComponent(route)}`);
+  </script>
+</head>
+<body>Loading ToolNest...</body>
+</html>
