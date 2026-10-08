@@ -1,4 +1,28 @@
 /* Additional ToolNest tools. File and text processing stays in the browser. */
+const EXTRA_TOOL_ICONS = {
+  'character-counter':'🅰️', 'sentence-counter':'🗣️', 'paragraph-counter':'📚', 'reading-time':'⌛',
+  'uppercase-converter':'🔼', 'lowercase-converter':'🔽', 'title-case-converter':'🆎', 'remove-empty-lines':'🧺',
+  'text-cleaner':'🧼', 'find-and-replace':'🔁', 'reverse-text':'↩️', 'remove-extra-spaces':'🔡',
+  'extract-emails':'📧', 'extract-urls':'🌍', 'extract-numbers':'🔣', 'text-to-slug':'🪧', 'random-text-generator':'🎰',
+  'json-minifier':'🪄', 'json-to-csv':'📊', 'csv-to-json':'📥', 'html-encoder':'🧱', 'html-decoder':'🧩',
+  'jwt-decoder':'🎟️', 'timestamp-converter':'🕰️', 'regex-tester':'🧪', 'css-minifier':'🧵', 'xml-validator':'📰',
+  'ipv4-subnet-calculator':'🕸️', 'cidr-calculator':'🧮', 'ip-range-calculator':'🛰️', 'ipv4-to-binary':'🧬',
+  'binary-to-ipv4':'🧭', 'decimal-to-binary':'0️⃣', 'binary-to-decimal':'1️⃣', 'mac-address-formatter':'🖧',
+  'user-agent-viewer':'🧑‍💻', 'http-status-reference':'📡',
+  'discount-calculator':'🏷️', 'tip-calculator':'🧾', 'bmi-calculator':'⚖️', 'loan-calculator':'🏦',
+  'simple-interest-calculator':'💸', 'compound-interest-calculator':'📈', 'tax-calculator':'🪙',
+  'salary-calculator':'💼', 'age-calculator':'🎂',
+  'date-difference-calculator':'📅', 'add-subtract-days':'➕', 'unix-time-converter':'🕒',
+  'calendar-generator':'🗓️', 'world-clock':'🌎', 'countdown-timer':'⏲️', 'pomodoro-timer':'🍅',
+  'gpa-calculator':'🎓', 'cgpa-calculator':'🔬', 'percentage-to-gpa':'🎯', 'grade-calculator':'📖',
+  'exam-marks-calculator':'📒', 'study-timer':'🧠', 'random-choice-picker':'🎳',
+  'password-strength-checker':'🛡️', 'random-string-generator':'🔒',
+  'jpg-to-png':'🧫', 'png-to-jpg':'🪟', 'webp-to-jpg':'🪼', 'jpg-to-webp':'🪻',
+  'png-to-webp':'🧿', 'webp-to-png':'🎭', 'grayscale-image':'🌑', 'image-rotator':'↪️',
+  'image-flipper':'🪞', 'image-metadata-viewer':'🗂️', 'image-color-picker':'🎛️',
+  'pdf-page-counter':'📃', 'merge-pdf':'📂', 'split-pdf':'📦', 'pdf-metadata-viewer':'🧷'
+};
+
 const EXTRA_TOOL_DEFS = [
   ['character-counter','Character Counter','text','Count characters with and without spaces.'],
   ['sentence-counter','Sentence Counter','text','Count sentences in pasted text.'],
@@ -77,7 +101,7 @@ const EXTRA_TOOL_DEFS = [
   ['merge-pdf','Merge PDF','pdf','Combine multiple PDF files in their selected order.'],
   ['split-pdf','Split PDF','pdf','Export selected pages from a PDF into a new PDF.'],
   ['pdf-metadata-viewer','PDF Metadata Viewer','pdf','Read basic PDF document information locally.']
-].map(([id, name, category, description]) => ({ id, name, category, icon: category === 'image' ? '▧' : category === 'pdf' ? '▤' : category === 'text' ? 'Aa' : category === 'networking' ? '⌘' : category === 'calculator' ? '%' : category === 'datetime' ? '◷' : category === 'student' ? 'Σ' : category === 'security' ? '◇' : '</>', description, render: renderExtraTool }));
+].map(([id, name, category, description]) => ({ id, name, category, icon: EXTRA_TOOL_ICONS[id], description, render: renderExtraTool }));
 
 TOOLS.push(...EXTRA_TOOL_DEFS);
 

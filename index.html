@@ -4,16 +4,19 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="ToolNest - Free online tools for PDF, images, text, and more. No signup required, all processing happens in your browser.">
-<meta name="keywords" content="free online tools, pdf tools, image tools, text tools, converter, compressor">
 <meta name="theme-color" content="#6366f1">
 <title>ToolNest - Free Online Tools</title>
-<link rel="canonical" href="https://toolnest.app/">
+<link rel="canonical" href="https://toolnest.sbs/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="ToolNest">
 <meta property="og:title" content="ToolNest - Free Online Tools">
 <meta property="og:description" content="Fast, useful browser-based tools for text, images, PDFs, developers, and everyday calculations.">
-<meta property="og:url" content="https://toolnest.app/">
+<meta property="og:url" content="https://toolnest.sbs/">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ToolNest - Free Online Tools">
+<meta name="twitter:description" content="Fast, useful browser-based tools for text, images, PDFs, developers, and everyday calculations.">
+<meta name="twitter:url" content="https://toolnest.sbs/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"ToolNest","url":"https://toolnest.sbs/"}</script>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛠️</text></svg>">
 <style>
 :root {
@@ -648,7 +651,7 @@ footer a:hover { text-decoration: underline; }
     </section>
 
       <nav class="category-links" aria-label="Tool categories">
-        <a href="/image-tools/" onclick="openCategory('image', event); return false;">Image Tools</a><a href="/pdf-tools/" onclick="openCategory('pdf', event); return false;">PDF Tools</a><a href="/text-tools/" onclick="openCategory('text', event); return false;">Text Tools</a><a href="/developer-tools/" onclick="openCategory('developer', event); return false;">Developer Tools</a><a href="/calculators/" onclick="openCategory('calculator', event); return false;">Calculators</a><a href="/networking-tools/" onclick="openCategory('networking', event); return false;">Networking</a><a href="/date-time-tools/" onclick="openCategory('datetime', event); return false;">Date &amp; Time</a><a href="/student-tools/" onclick="openCategory('student', event); return false;">Student Tools</a><a href="/security-tools/" onclick="openCategory('security', event); return false;">Security &amp; Utilities</a>
+        <a href="/image-tools/" onclick="openCategory('image', event); return false;">Image Tools</a><a href="/pdf-tools/" onclick="openCategory('pdf', event); return false;">PDF Tools</a><a href="/text-tools/" onclick="openCategory('text', event); return false;">Text Tools</a><a href="/developer-tools/" onclick="openCategory('developer', event); return false;">Developer Tools</a><a href="/calculators/" onclick="openCategory('calculator', event); return false;">Calculators</a><a href="/networking-tools/" onclick="openCategory('networking', event); return false;">Networking</a><a href="/date-time-tools/" onclick="openCategory('datetime', event); return false;">Date &amp; Time</a><a href="/student-tools/" onclick="openCategory('student', event); return false;">Student Tools</a><a href="/security-tools/" onclick="openCategory('security', event); return false;">Security &amp; Utilities</a><a href="/converters/" onclick="openCategory('converter', event); return false;">Converters</a><a href="/utilities/" onclick="openCategory('utility', event); return false;">Utilities</a>
       </nav>
 
     <div class="categories" id="categories" role="tablist" aria-label="Tool categories"></div>
@@ -663,7 +666,7 @@ footer a:hover { text-decoration: underline; }
 <footer>
   <p>© <span id="copyright-year">2026</span> ToolNest — Free online tools for everyday tasks.</p>
   <nav class="site-links" aria-label="Company"><a href="/about/" onclick="openInfoPage('about', event); return false;">About</a><a href="/contact/" onclick="openInfoPage('contact', event); return false;">Contact</a><a href="/privacy-policy/" onclick="openInfoPage('privacy-policy', event); return false;">Privacy</a><a href="/terms/" onclick="openInfoPage('terms', event); return false;">Terms</a><a href="/disclaimer/" onclick="openInfoPage('disclaimer', event); return false;">Disclaimer</a><a href="/cookie-policy/" onclick="openInfoPage('cookie-policy', event); return false;">Cookies</a></nav>
-  <p style="margin-top:8px;"><a href="/">Back to tools</a></p>
+  <p style="margin-top:8px;"><a href="/" onclick="showHome(event); return false;">Back to tools</a></p>
 </footer>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
@@ -738,7 +741,7 @@ const TOOLS = [
     name: 'Image Compressor',
     category: 'image',
     icon: '🗜️',
-    description: 'Compress JPG, PNG, and WebP images in your browser without quality loss.',
+    description: 'Compress JPG, PNG, and WebP images in your browser with adjustable output quality.',
     render: renderImageCompressor
   },
   {
@@ -847,7 +850,7 @@ const TOOLS = [
     id: 'number-base',
     name: 'Number Base Converter',
     category: 'converter',
-    icon: '🔢',
+    icon: '⌨️',
     description: 'Convert numbers between binary, octal, decimal, and hexadecimal.',
     render: renderNumberBase
   },
@@ -1009,7 +1012,15 @@ const CATEGORY_PAGES = {
   networking: ['Networking Tools', 'Inspect addresses, subnets, binary values, and common HTTP status codes.'],
   datetime: ['Date & Time Tools', 'Calculate dates, generate calendars, compare time zones, and run timers.'],
   student: ['Student Tools', 'Simple tools for grades, study sessions, choices, and academic planning.'],
-  security: ['Security & Utility Tools', 'Local-first utilities for passwords, random strings, and everyday tasks.']
+  security: ['Security & Utility Tools', 'Local-first utilities for passwords, random strings, and everyday tasks.'],
+  converter: ['Converters', 'Convert common units and number formats with browser-based tools.'],
+  utility: ['Utilities', 'Use focused tools for passwords, QR codes, timekeeping, and random values.']
+};
+
+const CATEGORY_SLUGS = {
+  image: 'image-tools', pdf: 'pdf-tools', text: 'text-tools', developer: 'developer-tools',
+  calculator: 'calculators', networking: 'networking-tools', datetime: 'date-time-tools',
+  student: 'student-tools', security: 'security-tools', converter: 'converters', utility: 'utilities'
 };
 
 const INFO_PAGES = {
@@ -1034,8 +1045,8 @@ const INFO_PAGES = {
     body: `<p class="updated">Last updated: September 29, 2026</p><p>ToolNest respects your privacy. This policy explains what information may be processed when you use this website and how you can make informed choices.</p>
       <h2>Information you enter</h2><p>Most ToolNest text, image, PDF, and calculator tools process input in your browser. The site does not need your text or files to operate those tools, and ToolNest does not intentionally receive that input through the tool interface. Your browser may retain data locally through normal browser behavior, such as page state, downloads, or cache.</p>
       <h2>Technical information</h2><p>Like most websites, the hosting provider, browser, or security services may process basic technical information such as an IP address, request time, device type, and requested page. This information helps deliver the site, protect it from abuse, and understand basic reliability.</p>
-      <h2>Advertising and cookies</h2><p>ToolNest may use Google AdSense or other advertising partners. Those partners may use cookies or similar technologies to show and measure advertisements, subject to their own policies and your available consent choices. See our <a href="/cookie-policy/" onclick="openInfoPage('cookie-policy', event); return false;">Cookie Policy</a> for details.</p>
-      <h2>Third-party services</h2><p>Some optional tools may load a public JavaScript library from a third-party content delivery network when you use that feature. Your browser requests that library directly. ToolNest does not sell the content you enter into its tools.</p>
+      <h2>Advertising and analytics</h2><p>There are currently no advertising or analytics scripts installed by ToolNest. If these services are added later, this policy and any required consent choices will be updated before they are used.</p>
+      <h2>Third-party services</h2><p>PDF, QR generation, and QR scanning features can request JavaScript libraries from public content delivery networks when you use them. Those requests disclose ordinary connection information, such as your IP address, to the provider. ToolNest does not send the text or files entered into those tools with the library request, and uploaded files are processed in your browser.</p>
       <h2>Your choices</h2><p>You can block or delete cookies in your browser, use privacy controls offered by advertising providers, and choose not to use a tool that requires an external library. You can contact us about privacy questions at <a href="mailto:ahsannnn73@gmail.com">ahsannnn73@gmail.com</a>.</p>`
   },
   terms: {
@@ -1059,10 +1070,9 @@ const INFO_PAGES = {
   'cookie-policy': {
     title: 'Cookie Policy',
     description: 'Understand how cookies and similar technologies may be used on ToolNest.',
-    body: `<p class="updated">Last updated: September 29, 2026</p><p>Cookies are small files or similar browser storage mechanisms that help websites remember settings, measure use, and deliver content. ToolNest keeps first-party storage limited to what is needed for the site to work.</p>
-      <h2>How cookies may be used</h2><ul><li>Essential operation: remembering temporary interface state or supporting security.</li><li>Measurement: understanding aggregate page performance and tool usage.</li><li>Advertising: allowing advertising partners such as Google to show, limit, and measure relevant ads.</li></ul>
-      <h2>Your choices</h2><p>You can manage cookies through your browser settings. You can also use consent or advertising controls presented by the site or advertising provider where available. Blocking some cookies may affect advertising or optional functionality, but the core browser-based tools should remain usable.</p>
-      <h2>Third-party cookies</h2><p>Advertising, analytics, or embedded libraries may set their own cookies under their own privacy policies. ToolNest does not control those cookies. Review the relevant provider's information before enabling optional services.</p>`
+    body: `<p class="updated">Last updated: September 29, 2026</p><p>The current ToolNest code does not intentionally set first-party cookies or use localStorage or sessionStorage. It also does not currently load analytics or advertising scripts.</p>
+      <h2>Third-party requests</h2><p>Some PDF and QR features load JavaScript libraries from public content delivery networks only when those features are used. The provider receives a normal browser request and may process connection information under its own policy. ToolNest does not include your tool input or selected files in those library requests.</p>
+      <h2>Future services</h2><p>If analytics, advertising, or other cookie-using services are introduced, this policy will be updated and any legally required consent options will be provided. You can also manage cookies and site data through your browser settings.</p>`
   }
 };
 
@@ -1071,10 +1081,29 @@ function resetMeta(title, description, path) {
   const meta = document.querySelector('meta[name="description"]');
   if (meta) meta.content = description;
   const canonical = document.querySelector('link[rel="canonical"]');
-  if (canonical) canonical.href = `https://toolnest.app${path}`;
+  if (canonical) canonical.href = `https://toolnest.sbs${path}`;
+  const social = {
+    'meta[property="og:title"]': title,
+    'meta[property="og:description"]': description,
+    'meta[property="og:url"]': `https://toolnest.sbs${path}`,
+    'meta[name="twitter:title"]': title,
+    'meta[name="twitter:description"]': description,
+    'meta[name="twitter:url"]': `https://toolnest.sbs${path}`
+  };
+  for (const [selector, content] of Object.entries(social)) {
+    const element = document.querySelector(selector);
+    if (element) element.content = content;
+  }
 }
 
-function openInfoPage(pageKey, event) {
+function updateRouteHistory(path) {
+  const target = location.protocol === 'file:'
+    ? path === '/' ? location.pathname : `${location.pathname}?route=${encodeURIComponent(path)}`
+    : path;
+  history.pushState(null, '', target);
+}
+
+function openInfoPage(pageKey, event, updateHistory = true) {
   if (event) event.preventDefault();
   const page = INFO_PAGES[pageKey];
   if (!page) return;
@@ -1084,12 +1113,12 @@ function openInfoPage(pageKey, event) {
   view.innerHTML = `<article class="info-page"><nav aria-label="Breadcrumb"><a href="/" onclick="showHome(event)">Home</a> / ${page.title}</nav><h1>${page.title}</h1>${page.body}</article>`;
   state.currentTool = null;
   const path = `/${pageKey}/`;
-  history.pushState(null, '', path);
+  if (updateHistory) updateRouteHistory(path);
   resetMeta(`${page.title} | ToolNest`, page.description, path);
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-function openCategory(category, event) {
+function openCategory(category, event, updateHistory = true) {
   if (event) event.preventDefault();
   const page = CATEGORY_PAGES[category];
   if (!page) return;
@@ -1099,8 +1128,8 @@ function openCategory(category, event) {
   const tools = TOOLS.filter(tool => tool.category === category);
   view.innerHTML = `<article class="category-page"><nav aria-label="Breadcrumb"><a href="/" onclick="showHome(event)">Home</a> / ${page[0]}</nav><h1>${page[0]}</h1><p>${page[1]}</p><div class="tools-grid" style="margin-top:24px;">${tools.map(tool => `<a class="tool-card" href="/tools/${tool.id}/" onclick="openTool('${tool.id}'); return false;" aria-label="Open ${escapeHtml(tool.name)}"><div class="tool-icon" aria-hidden="true">${tool.icon}</div><h3>${escapeHtml(tool.name)}</h3><p>${escapeHtml(tool.description)}</p></a>`).join('')}</div></article>`;
   state.currentTool = null;
-  const path = `/${category === 'calculator' ? 'calculators' : category === 'datetime' ? 'date-time-tools' : category === 'security' ? 'security-tools' : `${category}-tools`}/`;
-  history.pushState(null, '', path);
+  const path = `/${CATEGORY_SLUGS[category]}/`;
+  if (updateHistory) updateRouteHistory(path);
   resetMeta(`${page[0]} | ToolNest`, page[1], path);
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
@@ -1112,11 +1141,11 @@ function showHome(e) {
   document.getElementById('toolView').innerHTML = '';
   state.currentTool = null;
   window.scrollTo({ top: 0, behavior: 'smooth' });
-  if (e) history.pushState(null, '', '/');
+  if (e) updateRouteHistory('/');
   resetMeta('ToolNest - Free Online Tools', 'ToolNest - Free online tools for PDF, images, text, developers, calculations, and more.', '/');
 }
 
-function openTool(toolId) {
+function openTool(toolId, updateHistory = true) {
   const tool = TOOLS.find(t => t.id === toolId);
   if (!tool) return;
   state.currentTool = tool;
@@ -1124,7 +1153,7 @@ function openTool(toolId) {
   const view = document.getElementById('toolView');
   view.classList.add('active');
   view.innerHTML = `
-    <nav aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/${tool.category === 'image' ? 'image-tools' : tool.category === 'pdf' ? 'pdf-tools' : tool.category === 'text' ? 'text-tools' : tool.category === 'developer' ? 'developer-tools' : tool.category === 'converter' ? 'calculators' : 'security-tools'}/">${tool.category}</a> / ${tool.name}</nav>
+    <nav aria-label="Breadcrumb"><a href="/" onclick="showHome(event); return false;">Home</a> / <a href="/${CATEGORY_SLUGS[tool.category]}/" onclick="openCategory('${tool.category}', event); return false;">${tool.category}</a> / ${tool.name}</nav>
     <div class="tool-header">
       <h1>${tool.icon} ${tool.name}</h1>
       <p>${tool.description}</p>
@@ -1142,22 +1171,13 @@ function openTool(toolId) {
   `;
   tool.render(document.getElementById('toolPanel'));
   window.scrollTo({ top: 0, behavior: 'smooth' });
-  history.pushState(null, '', '/tools/' + toolId + '/');
-  document.title = `${tool.name} | ToolNest`;
-  const description = document.querySelector('meta[name="description"]');
-  if (description) description.content = `${tool.description} Use ${tool.name} online with ToolNest.`;
-  const canonical = document.querySelector('link[rel="canonical"]');
-  if (canonical) canonical.href = `https://toolnest.app/tools/${tool.id}/`;
-  const ogTitle = document.querySelector('meta[property="og:title"]');
-  if (ogTitle) ogTitle.content = `${tool.name} | ToolNest`;
-  const ogDescription = document.querySelector('meta[property="og:description"]');
-  if (ogDescription) ogDescription.content = `${tool.description} Use ${tool.name} online with ToolNest.`;
-  const ogUrl = document.querySelector('meta[property="og:url"]');
-  if (ogUrl) ogUrl.content = `https://toolnest.app/tools/${tool.id}/`;
+  if (updateHistory) updateRouteHistory('/tools/' + toolId + '/');
+  const description = `${tool.description} Use ${tool.name} online with ToolNest.`;
+  resetMeta(`${tool.name} | ToolNest`, description, `/tools/${tool.id}/`);
   const related = TOOLS.filter(item => item.id !== tool.id && item.category === tool.category).slice(0, 4);
   const relatedSection = document.createElement('section');
   relatedSection.className = 'tool-content';
-  relatedSection.innerHTML = `<h2>Related tools</h2><p>${related.map(item => `<a href="/tools/${item.id}/">${escapeHtml(item.name)}</a>`).join(' · ')}</p><p class="privacy-note">Privacy: this tool runs in your browser. Data entered here is not sent to ToolNest.</p>`;
+  relatedSection.innerHTML = `<h2>Related tools</h2><p>${related.map(item => `<a href="/tools/${item.id}/" onclick="openTool('${item.id}'); return false;">${escapeHtml(item.name)}</a>`).join(' · ')}</p><p class="privacy-note">Privacy: this tool runs in your browser. Data entered here is not sent to ToolNest.</p>`;
   view.appendChild(relatedSection);
 }
 
@@ -1185,20 +1205,17 @@ function routeCurrentPath() {
   const path = requestedPath.replace(/\/+$/, '') || '/';
   const toolRoute = path.match(/^\/tools\/([^/]+)$/);
   if (toolRoute && TOOLS.some(tool => tool.id === toolRoute[1])) {
-    openTool(toolRoute[1]);
+    openTool(toolRoute[1], false);
     return;
   }
   const infoRoute = Object.keys(INFO_PAGES).find(key => path === `/${key}`);
   if (infoRoute) {
-    openInfoPage(infoRoute);
+    openInfoPage(infoRoute, null, false);
     return;
   }
-  const categoryRoute = Object.keys(CATEGORY_PAGES).find(category => {
-    const slug = category === 'calculator' ? 'calculators' : category === 'datetime' ? 'date-time-tools' : category === 'security' ? 'security-tools' : `${category}-tools`;
-    return path === `/${slug}`;
-  });
+  const categoryRoute = Object.keys(CATEGORY_PAGES).find(category => path === `/${CATEGORY_SLUGS[category]}`);
   if (categoryRoute) {
-    openCategory(categoryRoute);
+    openCategory(categoryRoute, null, false);
     return;
   }
   showHome();
@@ -1673,14 +1690,19 @@ function renderImageCompressor(panel) {
       const ext = format === 'image/jpeg' ? 'jpg' : format === 'image/webp' ? 'webp' : 'png';
       const origSize = currentFile.size;
       const newSize = blob.size;
-      const saved = ((1 - newSize / origSize) * 100).toFixed(1);
+      const sizeChange = ((newSize / origSize - 1) * 100).toFixed(1);
+      const sizeMessage = newSize < origSize
+        ? `Size reduced by ${Math.abs(sizeChange)}%`
+        : newSize > origSize
+          ? `Size increased by ${sizeChange}%`
+          : 'No size change';
       output.querySelector('#ic-result').innerHTML = `
         <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center;">
           <img src="${URL.createObjectURL(blob)}" style="max-width:200px;max-height:200px;border-radius:8px;" alt="Compressed preview">
           <div>
             <p><strong>Original:</strong> ${formatBytes(origSize)}</p>
             <p><strong>Compressed:</strong> ${formatBytes(newSize)}</p>
-            <p style="color:var(--success);font-weight:600;"><strong>Saved:</strong> ${saved}%</p>
+            <p style="font-weight:600;">${sizeMessage}</p>
             <button class="btn btn-primary" style="margin-top:8px;" id="ic-download">Download Compressed</button>
           </div>
         </div>
@@ -2572,7 +2594,7 @@ function renderQrGenerator(panel) {
   panel.innerHTML = `
     <div class="form-group">
       <label for="qr-text">Text or URL to encode:</label>
-      <textarea id="qr-text" placeholder="https://example.com" style="min-height:100px;">https://toolnest.app</textarea>
+      <textarea id="qr-text" placeholder="https://example.com" style="min-height:100px;">https://toolnest.sbs</textarea>
     </div>
     <div class="grid-2">
       <div class="form-group">
@@ -3276,9 +3298,17 @@ function renderPercentageCalc(panel) {
   }
 
   panel.querySelector('#pc-run').onclick = () => {
-    const a = parseFloat(aInput.value) || 0;
-    const b = parseFloat(bInput.value) || 0;
+    const a = Number(aInput.value);
+    const b = Number(bInput.value);
     const m = mode.value;
+    if (aInput.value.trim() === '' || bInput.value.trim() === '' || !Number.isFinite(a) || !Number.isFinite(b)) {
+      toast('Enter valid numbers in both fields.', 'error');
+      return;
+    }
+    if ((m === 'is' || m === 'reverse') && b === 0 || m === 'change' && a === 0) {
+      toast('The divisor must not be zero for this calculation.', 'error');
+      return;
+    }
     let res, f;
     if (m === 'of') { res = a / 100 * b; f = `${a}% × ${b} = ${res}`; }
     else if (m === 'is') { res = a / b * 100; f = `${a} ÷ ${b} × 100 = ${res.toFixed(4)}%`; res = res.toFixed(4) + '%'; }
@@ -3314,8 +3344,6 @@ window.addEventListener('popstate', () => {
   routeCurrentPath();
 });
 
-document.addEventListener('DOMContentLoaded', init);
-
 // Global exposure for inline handlers
 window.showHome = showHome;
 window.openTool = openTool;
@@ -3323,7 +3351,13 @@ window.openInfoPage = openInfoPage;
 window.openCategory = openCategory;
 window.setCategory = setCategory;
 window.toast = toast;
+const extraToolsScript = document.createElement('script');
+extraToolsScript.src = location.protocol === 'file:'
+  ? new URL('assets/js/extra-tools.js', location.href).href
+  : '/assets/js/extra-tools.js';
+extraToolsScript.onload = init;
+extraToolsScript.onerror = init;
+document.head.appendChild(extraToolsScript);
 </script>
-<script src="/assets/js/extra-tools.js" defer></script>
 </body>
 </html>

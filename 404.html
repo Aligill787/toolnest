@@ -2,12 +2,19 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>ToolNest</title>
-  <script>
-    const base = location.pathname.includes('/toolnest/') ? '/toolnest' : '';
-    const route = location.pathname + location.search + location.hash;
-    location.replace(`${base}/?route=${encodeURIComponent(route)}`);
-  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Page not found | ToolNest</title>
+  <style>
+    body { max-width: 42rem; margin: 12vh auto; padding: 0 1.25rem; color: #1e293b; font: 1rem/1.6 system-ui, sans-serif; }
+    a { color: #4f46e5; }
+  </style>
 </head>
-<body>Loading ToolNest...</body>
+<body>
+  <main>
+    <h1>Page not found</h1>
+    <p>This ToolNest page does not exist or may have moved.</p>
+    <p><a href="/">Return to ToolNest</a></p>
+  </main>
+</body>
 </html>
