@@ -1126,24 +1126,34 @@ function updateStructuredData(title, description, path, breadcrumbs) {
 }
 
 function resetMeta(title, description, path, breadcrumbs = []) {
+  const routeMetadata = window.TOOLNEST_SEO && window.TOOLNEST_SEO[path];
+  if (routeMetadata) {
+    title = routeMetadata.title;
+    description = routeMetadata.description;
+  }
   document.title = title;
   const meta = document.querySelector('meta[name="description"]');
   if (meta) meta.content = description;
   const canonical = document.querySelector('link[rel="canonical"]');
-  if (canonical) canonical.href = `https://toolnest.sbs${path}`;
+  if (canonical) canonical.href = routeMetadata ? routeMetadata.canonical : `https://toolnest.sbs${path}`;
   const social = {
-    'meta[property="og:title"]': title,
-    'meta[property="og:description"]': description,
-    'meta[property="og:url"]': `https://toolnest.sbs${path}`,
-    'meta[name="twitter:title"]': title,
-    'meta[name="twitter:description"]': description,
-    'meta[name="twitter:url"]': `https://toolnest.sbs${path}`
+    'meta[property="og:title"]': routeMetadata ? routeMetadata.og.title : title,
+    'meta[property="og:description"]': routeMetadata ? routeMetadata.og.description : description,
+    'meta[property="og:url"]': routeMetadata ? routeMetadata.og.url : `https://toolnest.sbs${path}`,
+    'meta[name="twitter:title"]': routeMetadata ? routeMetadata.twitter.title : title,
+    'meta[name="twitter:description"]': routeMetadata ? routeMetadata.twitter.description : description,
+    'meta[name="twitter:url"]': routeMetadata ? routeMetadata.twitter.url : `https://toolnest.sbs${path}`
   };
   for (const [selector, content] of Object.entries(social)) {
     const element = document.querySelector(selector);
     if (element) element.content = content;
   }
-  updateStructuredData(title, description, path, breadcrumbs);
+  const structuredData = document.getElementById('structured-data');
+  if (routeMetadata && structuredData) {
+    structuredData.textContent = JSON.stringify(routeMetadata.structuredData);
+  } else {
+    updateStructuredData(title, description, path, breadcrumbs);
+  }
 }
 
 function updateRouteHistory(path) {
