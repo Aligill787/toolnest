@@ -3,20 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="ToolNest - Free online tools for PDF, images, text, and more. No signup required, all processing happens in your browser.">
+<meta name="description" content="Use free online tools for text, images, PDFs, JSON, calculations, networking, and study. ToolNest runs useful tasks in your browser without an account.">
 <meta name="theme-color" content="#6366f1">
-<title>ToolNest - Free Online Tools</title>
+<title>Free Online Tools for PDF, Images, Text &amp; More | ToolNest</title>
 <link rel="canonical" href="https://toolnest.sbs/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="ToolNest">
-<meta property="og:title" content="ToolNest - Free Online Tools">
-<meta property="og:description" content="Fast, useful browser-based tools for text, images, PDFs, developers, and everyday calculations.">
+<meta property="og:title" content="Free Online Tools for PDF, Images, Text &amp; More | ToolNest">
+<meta property="og:description" content="Use free online tools for text, images, PDFs, JSON, calculations, networking, and study. ToolNest runs useful tasks in your browser without an account.">
 <meta property="og:url" content="https://toolnest.sbs/">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ToolNest - Free Online Tools">
-<meta name="twitter:description" content="Fast, useful browser-based tools for text, images, PDFs, developers, and everyday calculations.">
+<meta name="twitter:title" content="Free Online Tools for PDF, Images, Text &amp; More | ToolNest">
+<meta name="twitter:description" content="Use free online tools for text, images, PDFs, JSON, calculations, networking, and study. ToolNest runs useful tasks in your browser without an account.">
 <meta name="twitter:url" content="https://toolnest.sbs/">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"ToolNest","url":"https://toolnest.sbs/"}</script>
+<script type="application/ld+json" id="structured-data">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://toolnest.sbs/#website","name":"ToolNest","url":"https://toolnest.sbs/"},{"@type":"WebPage","@id":"https://toolnest.sbs/#webpage","name":"Free Online Tools for PDF, Images, Text & More | ToolNest","description":"Use free online tools for text, images, PDFs, JSON, calculations, networking, and study. ToolNest runs useful tasks in your browser without an account.","url":"https://toolnest.sbs/","isPartOf":{"@id":"https://toolnest.sbs/#website"}}]}</script>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛠️</text></svg>">
 <style>
 :root {
@@ -161,6 +161,15 @@ main {
   max-width: 600px;
   margin: 0 auto;
 }
+
+.home-intro {
+  max-width: 900px;
+  margin: 0 auto 28px;
+  color: var(--text-muted);
+}
+.home-intro h2 { margin-bottom: 8px; color: var(--text); font-size: 1.2rem; }
+.home-intro p { margin-bottom: 10px; }
+.home-intro nav { display: flex; flex-wrap: wrap; gap: 8px 18px; }
 
 /* Category tabs */
 .categories {
@@ -646,13 +655,25 @@ footer a:hover { text-decoration: underline; }
   <!-- HOME VIEW -->
   <div id="homeView">
     <section class="hero">
-      <h1>Free Online Tools</h1>
-      <p>Useful, free tools for everyday tasks. Many tools process data in your browser; each tool explains how its operation works.</p>
+      <h1>Free Online Tools for Everyday Tasks</h1>
+      <p>Practical browser-based tools for working with text, files, calculations, and everyday data.</p>
     </section>
 
       <nav class="category-links" aria-label="Tool categories">
         <a href="/image-tools/" onclick="openCategory('image', event); return false;">Image Tools</a><a href="/pdf-tools/" onclick="openCategory('pdf', event); return false;">PDF Tools</a><a href="/text-tools/" onclick="openCategory('text', event); return false;">Text Tools</a><a href="/developer-tools/" onclick="openCategory('developer', event); return false;">Developer Tools</a><a href="/calculators/" onclick="openCategory('calculator', event); return false;">Calculators</a><a href="/networking-tools/" onclick="openCategory('networking', event); return false;">Networking</a><a href="/date-time-tools/" onclick="openCategory('datetime', event); return false;">Date &amp; Time</a><a href="/student-tools/" onclick="openCategory('student', event); return false;">Student Tools</a><a href="/security-tools/" onclick="openCategory('security', event); return false;">Security &amp; Utilities</a><a href="/converters/" onclick="openCategory('converter', event); return false;">Converters</a><a href="/utilities/" onclick="openCategory('utility', event); return false;">Utilities</a>
       </nav>
+
+    <section class="home-intro" aria-labelledby="home-intro-title">
+      <h2 id="home-intro-title">Tools for text, files, and everyday decisions</h2>
+      <p>Count and transform text, format JSON, convert or inspect images, and handle selected PDF tasks. ToolNest also includes calculators for common questions, networking utilities, study helpers, and date and time tools. Most processing happens in your browser; check each tool for details about its inputs and output.</p>
+      <nav aria-label="Featured tools">
+        <a href="/tools/word-counter/" onclick="openTool('word-counter'); return false;">Count words with the Word Counter</a>
+        <a href="/tools/json-formatter/" onclick="openTool('json-formatter'); return false;">Format and validate JSON</a>
+        <a href="/tools/image-compressor/" onclick="openTool('image-compressor'); return false;">Compress an image</a>
+        <a href="/tools/pdf-page-counter/" onclick="openTool('pdf-page-counter'); return false;">Count PDF pages</a>
+        <a href="/tools/gpa-calculator/" onclick="openTool('gpa-calculator'); return false;">Calculate a GPA</a>
+      </nav>
+    </section>
 
     <div class="categories" id="categories" role="tablist" aria-label="Tool categories"></div>
 
@@ -1004,17 +1025,17 @@ function loadImage(file) {
 
 // ============ ROUTING ============
 const CATEGORY_PAGES = {
-  image: ['Image Tools', 'Resize, convert, compress, and inspect images directly in your browser.'],
-  pdf: ['PDF Tools', 'Work with PDF files locally in your browser for common document tasks.'],
-  text: ['Text Tools', 'Count, clean, compare, and transform text quickly without an account.'],
-  developer: ['Developer Tools', 'Practical browser-based utilities for JSON, encoding, hashes, URLs, and more.'],
-  calculator: ['Calculators', 'Useful calculators for money, measurements, percentages, and everyday decisions.'],
-  networking: ['Networking Tools', 'Inspect addresses, subnets, binary values, and common HTTP status codes.'],
-  datetime: ['Date & Time Tools', 'Calculate dates, generate calendars, compare time zones, and run timers.'],
-  student: ['Student Tools', 'Simple tools for grades, study sessions, choices, and academic planning.'],
-  security: ['Security & Utility Tools', 'Local-first utilities for passwords, random strings, and everyday tasks.'],
-  converter: ['Converters', 'Convert common units and number formats with browser-based tools.'],
-  utility: ['Utilities', 'Use focused tools for passwords, QR codes, timekeeping, and random values.']
+  image: ['Image Tools', 'Resize images to exact dimensions, convert between common formats, reduce file size, and inspect image details in your browser.'],
+  pdf: ['PDF Tools', 'Count pages, inspect document metadata, merge files, or extract selected pages with these browser-based PDF tools.'],
+  text: ['Text Tools', 'Count words and characters, compare passages, clean line-based text, and change letter case before copying your result.'],
+  developer: ['Developer Tools', 'Format and validate JSON, encode data, generate hashes and UUIDs, and work with common web formats.'],
+  calculator: ['Calculators', 'Estimate loan payments, interest, tax, BMI, discounts, and other values using the inputs and assumptions shown by each calculator.'],
+  networking: ['Networking Tools', 'Calculate IPv4 subnet ranges, inspect CIDR blocks, convert address formats, and look up common HTTP status codes.'],
+  datetime: ['Date & Time Tools', 'Compare dates, convert timestamps, view time zones, generate calendars, and run browser-based timers.'],
+  student: ['Student Tools', 'Work out GPA and grades, estimate exam marks, choose randomly from a list, or run a focused study timer.'],
+  security: ['Security & Utility Tools', 'Generate random strings and check password characteristics locally; review each tool’s limits before relying on a result.'],
+  converter: ['Converters', 'Convert measurements such as length and temperature, or switch numbers between binary, decimal, octal, and hexadecimal.'],
+  utility: ['Utilities', 'Generate passwords and QR codes, scan QR images, time laps, or create random numbers within a range.']
 };
 
 const CATEGORY_SLUGS = {
@@ -1076,7 +1097,35 @@ const INFO_PAGES = {
   }
 };
 
-function resetMeta(title, description, path) {
+function updateStructuredData(title, description, path, breadcrumbs) {
+  const websiteUrl = 'https://toolnest.sbs/';
+  const pageUrl = `https://toolnest.sbs${path}`;
+  const graph = [{
+    '@type': 'WebPage',
+    '@id': `${pageUrl}#webpage`,
+    name: title,
+    description,
+    url: pageUrl,
+    isPartOf: { '@id': `${websiteUrl}#website` }
+  }];
+  if (path === '/') {
+    graph.unshift({ '@type': 'WebSite', '@id': `${websiteUrl}#website`, name: 'ToolNest', url: websiteUrl });
+  } else if (breadcrumbs.length) {
+    graph.push({
+      '@type': 'BreadcrumbList',
+      itemListElement: breadcrumbs.map((crumb, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        name: crumb.name,
+        item: `https://toolnest.sbs${crumb.path}`
+      }))
+    });
+  }
+  const structuredData = document.getElementById('structured-data');
+  if (structuredData) structuredData.textContent = JSON.stringify({ '@context': 'https://schema.org', '@graph': graph });
+}
+
+function resetMeta(title, description, path, breadcrumbs = []) {
   document.title = title;
   const meta = document.querySelector('meta[name="description"]');
   if (meta) meta.content = description;
@@ -1094,6 +1143,7 @@ function resetMeta(title, description, path) {
     const element = document.querySelector(selector);
     if (element) element.content = content;
   }
+  updateStructuredData(title, description, path, breadcrumbs);
 }
 
 function updateRouteHistory(path) {
@@ -1103,18 +1153,36 @@ function updateRouteHistory(path) {
   history.pushState(null, '', target);
 }
 
+function setHomeHeadingVisible(isVisible) {
+  const hero = document.querySelector('#homeView .hero');
+  let heading = hero.querySelector('h1');
+  if (isVisible && !heading) {
+    heading = document.createElement('h1');
+    heading.textContent = 'Free Online Tools for Everyday Tasks';
+    hero.prepend(heading);
+  } else if (!isVisible && heading) {
+    heading.remove();
+  }
+}
+
 function openInfoPage(pageKey, event, updateHistory = true) {
   if (event) event.preventDefault();
   const page = INFO_PAGES[pageKey];
   if (!page) return;
+  setHomeHeadingVisible(false);
   document.getElementById('homeView').style.display = 'none';
   const view = document.getElementById('toolView');
   view.classList.add('active');
-  view.innerHTML = `<article class="info-page"><nav aria-label="Breadcrumb"><a href="/" onclick="showHome(event)">Home</a> / ${page.title}</nav><h1>${page.title}</h1>${page.body}</article>`;
+  view.innerHTML = `<article class="info-page"><nav aria-label="Breadcrumb"><a href="/" onclick="showHome(event)">Home</a> / ${escapeHtml(page.title)}</nav><h1>${escapeHtml(page.title)}</h1>${page.body}</article>`;
   state.currentTool = null;
   const path = `/${pageKey}/`;
   if (updateHistory) updateRouteHistory(path);
-  resetMeta(`${page.title} | ToolNest`, page.description, path);
+  const title = pageKey === 'about'
+    ? 'About ToolNest | Our Approach'
+    : pageKey === 'contact' ? 'Contact ToolNest | Send Feedback' : `${page.title} | ToolNest`;
+  resetMeta(title, page.description, path, [
+    { name: 'Home', path: '/' }, { name: page.title, path }
+  ]);
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
@@ -1122,62 +1190,139 @@ function openCategory(category, event, updateHistory = true) {
   if (event) event.preventDefault();
   const page = CATEGORY_PAGES[category];
   if (!page) return;
+  setHomeHeadingVisible(false);
   document.getElementById('homeView').style.display = 'none';
   const view = document.getElementById('toolView');
   view.classList.add('active');
   const tools = TOOLS.filter(tool => tool.category === category);
-  view.innerHTML = `<article class="category-page"><nav aria-label="Breadcrumb"><a href="/" onclick="showHome(event)">Home</a> / ${page[0]}</nav><h1>${page[0]}</h1><p>${page[1]}</p><div class="tools-grid" style="margin-top:24px;">${tools.map(tool => `<a class="tool-card" href="/tools/${tool.id}/" onclick="openTool('${tool.id}'); return false;" aria-label="Open ${escapeHtml(tool.name)}"><div class="tool-icon" aria-hidden="true">${tool.icon}</div><h3>${escapeHtml(tool.name)}</h3><p>${escapeHtml(tool.description)}</p></a>`).join('')}</div></article>`;
+  view.innerHTML = `<article class="category-page"><nav aria-label="Breadcrumb"><a href="/" onclick="showHome(event)">Home</a> / ${escapeHtml(page[0])}</nav><h1>${escapeHtml(page[0])}</h1><p>${escapeHtml(page[1])}</p><div class="tools-grid" style="margin-top:24px;">${tools.map(tool => `<a class="tool-card" href="/tools/${tool.id}/" onclick="openTool('${tool.id}'); return false;" aria-label="Open ${escapeHtml(tool.name)}"><div class="tool-icon" aria-hidden="true">${tool.icon}</div><h3>${escapeHtml(tool.name)}</h3><p>${escapeHtml(tool.description)}</p></a>`).join('')}</div></article>`;
   state.currentTool = null;
   const path = `/${CATEGORY_SLUGS[category]}/`;
   if (updateHistory) updateRouteHistory(path);
-  resetMeta(`${page[0]} | ToolNest`, page[1], path);
+  resetMeta(`Free ${page[0]} | ToolNest`, page[1], path, [
+    { name: 'Home', path: '/' }, { name: page[0], path }
+  ]);
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function showHome(e) {
   if (e) e.preventDefault();
+  setHomeHeadingVisible(true);
   document.getElementById('homeView').style.display = '';
   document.getElementById('toolView').classList.remove('active');
   document.getElementById('toolView').innerHTML = '';
   state.currentTool = null;
   window.scrollTo({ top: 0, behavior: 'smooth' });
   if (e) updateRouteHistory('/');
-  resetMeta('ToolNest - Free Online Tools', 'ToolNest - Free online tools for PDF, images, text, developers, calculations, and more.', '/');
+  resetMeta('Free Online Tools for PDF, Images, Text & More | ToolNest', 'Use free online tools for text, images, PDFs, JSON, calculations, networking, and study. ToolNest runs useful tasks in your browser without an account.', '/');
+}
+
+const TOOL_TITLE_OVERRIDES = {
+  'word-counter': 'Free Word Counter - Count Words & Characters | ToolNest',
+  'case-converter': 'Free Case Converter - Uppercase, Lowercase & More | ToolNest',
+  'json-formatter': 'Free JSON Formatter & Validator | ToolNest',
+  'image-converter': 'Free Image Format Converter - JPG, PNG & WebP | ToolNest'
+};
+
+const TOOL_INSTRUCTION_OVERRIDES = {
+  'word-counter': 'Paste or type text to see live counts for words, characters, sentences, paragraphs, lines, and estimated reading time.',
+  'case-converter': 'Paste text, choose the case transformation you need, then review and copy the converted text.',
+  'json-formatter': 'Paste JSON, choose indentation or key sorting, then format, minify, or validate it. Invalid input returns a parse error to help locate the problem.',
+  'image-compressor': 'Choose an image and output format, adjust quality where available, then compare the output size before downloading.',
+  'image-converter': 'Choose a supported image, select a target format, inspect the converted preview, and download the new file.',
+  'image-to-base64': 'Choose an image to create a Base64 data URI that you can copy for use in HTML or CSS.',
+  'image-metadata-viewer': 'Choose an image to inspect its dimensions, MIME type, and file size in your browser.',
+  'image-color-picker': 'Load an image and select a pixel to read its color value.',
+  'images-to-pdf': 'Choose the images to include, check their order, and create a PDF from the selected files.',
+  'pdf-page-counter': 'Choose a PDF to read its page count in your browser.',
+  'pdf-metadata-viewer': 'Choose one PDF to inspect the document information available in the file.',
+  'merge-pdf': 'Select two or more PDF files, arrange their order, and create a combined document.',
+  'split-pdf': 'Choose a PDF and specify the pages to export into a separate document.',
+  'random-choice-picker': 'Enter one option per line, then choose one of the listed options at random.',
+  'password-strength-checker': 'Enter a password to review its length and character diversity. The estimate does not guarantee that an account is secure.',
+  'random-string-generator': 'Choose a string length and available character options, then generate a random value in your browser.',
+  'study-timer': 'Set a study-session duration, start the timer, and use reset when you want to begin again.',
+  'gpa-calculator': 'Enter each course grade and its credits to calculate a credit-weighted GPA. Confirm the grading scale your school uses.'
+};
+
+function toolInstructions(tool) {
+  if (TOOL_INSTRUCTION_OVERRIDES[tool.id]) return TOOL_INSTRUCTION_OVERRIDES[tool.id];
+  const guidance = {
+    text: 'Paste or type your text, choose any available options, then review the result before copying it.',
+    image: 'Choose a supported image and set the available format or dimensions. Check the preview and download the output when it is ready.',
+    pdf: 'Select the PDF files or page range requested by the tool. Review the page count or file order before saving the result.',
+    developer: 'Paste the data you want to work with, run the formatter or conversion, and review validation messages before copying the output.',
+    networking: 'Enter the address, prefix, or value requested. Check the calculated range or converted representation against your input.',
+    calculator: 'Enter values in the labeled fields, confirm the units and assumptions, and use the result as an estimate where appropriate.',
+    datetime: 'Enter the requested dates, time zone, or duration, then review the displayed local time or calculated interval.',
+    student: 'Enter your grades, credits, marks, or choices in the labeled fields and review the calculation before using it for planning.',
+    security: 'Choose the available length or options, generate or check the value locally, and avoid sharing sensitive information.',
+    converter: 'Enter the value and choose the source and target units or number bases, then check the converted result.',
+    utility: 'Enter the requested value or select an input file, use the available controls, and review the result before copying or saving it.'
+  };
+  return guidance[tool.category] || 'Enter the requested input, run the tool, and review the result before copying or saving it.';
+}
+
+const RELATED_TOOL_IDS = {
+  'word-counter': ['character-counter', 'sentence-counter', 'paragraph-counter', 'reading-time'],
+  'case-converter': ['uppercase-converter', 'lowercase-converter', 'title-case-converter', 'text-cleaner'],
+  'json-formatter': ['json-minifier', 'json-to-csv', 'csv-to-json', 'xml-validator'],
+  'image-converter': ['jpg-to-png', 'png-to-jpg', 'webp-to-jpg', 'image-compressor'],
+  'images-to-pdf': ['merge-pdf', 'split-pdf', 'pdf-page-counter', 'pdf-metadata-viewer'],
+  'ipv4-subnet-calculator': ['cidr-calculator', 'ip-range-calculator', 'ipv4-to-binary', 'binary-to-ipv4'],
+  'gpa-calculator': ['cgpa-calculator', 'percentage-to-gpa', 'grade-calculator', 'exam-marks-calculator'],
+  'password-strength-checker': ['password-generator', 'random-string-generator', 'uuid-generator', 'hash-generator'],
+  'random-string-generator': ['password-generator', 'password-strength-checker', 'uuid-generator', 'random-number'],
+  'unit-converter': ['number-base', 'decimal-to-binary', 'binary-to-decimal', 'percentage-calc'],
+  'number-base': ['decimal-to-binary', 'binary-to-decimal', 'ipv4-to-binary', 'binary-to-ipv4']
+};
+
+function getRelatedTools(tool) {
+  const preferred = (RELATED_TOOL_IDS[tool.id] || [])
+    .map(id => TOOLS.find(item => item.id === id))
+    .filter(Boolean);
+  const sameCategory = TOOLS.filter(item => item.id !== tool.id && item.category === tool.category);
+  return [...new Map([...preferred, ...sameCategory].map(item => [item.id, item])).values()]
+    .filter(item => item.id !== tool.id)
+    .slice(0, 4);
 }
 
 function openTool(toolId, updateHistory = true) {
   const tool = TOOLS.find(t => t.id === toolId);
   if (!tool) return;
+  setHomeHeadingVisible(false);
   state.currentTool = tool;
   document.getElementById('homeView').style.display = 'none';
   const view = document.getElementById('toolView');
   view.classList.add('active');
   view.innerHTML = `
-    <nav aria-label="Breadcrumb"><a href="/" onclick="showHome(event); return false;">Home</a> / <a href="/${CATEGORY_SLUGS[tool.category]}/" onclick="openCategory('${tool.category}', event); return false;">${tool.category}</a> / ${tool.name}</nav>
+    <nav aria-label="Breadcrumb"><a href="/" onclick="showHome(event); return false;">Home</a> / <a href="/${CATEGORY_SLUGS[tool.category]}/" onclick="openCategory('${tool.category}', event); return false;">${escapeHtml(CATEGORY_PAGES[tool.category][0])}</a> / ${escapeHtml(tool.name)}</nav>
     <div class="tool-header">
-      <h1>${tool.icon} ${tool.name}</h1>
-      <p>${tool.description}</p>
+      <h1>Free ${escapeHtml(tool.name)}</h1>
+      <p>${escapeHtml(tool.description)}</p>
     </div>
     <div class="tool-panel" id="toolPanel"></div>
     <section class="tool-content">
       <h2>How to use ${tool.name}</h2>
-      <p>${tool.description} Enter your information in the tool above, review the result, and use the available copy or download controls when provided. Inputs are handled in this browser unless a feature explicitly says otherwise.</p>
-      <h2>About this tool</h2>
-      <p>${tool.name} is designed for quick, focused tasks without requiring an account. Check your input before processing; file tools work best with supported, uncorrupted files and very large files may be limited by your device's available memory.</p>
-      <h2>Frequently asked questions</h2>
-      <h3>Is this tool free?</h3><p>Yes. You can use it in a modern browser without creating an account.</p>
-      <h3>Is my input uploaded?</h3><p>This tool runs in your browser. ToolNest does not receive your text or files through this page.</p>
+      <p>${escapeHtml(toolInstructions(tool))}</p>
     </section>
   `;
   tool.render(document.getElementById('toolPanel'));
   window.scrollTo({ top: 0, behavior: 'smooth' });
   if (updateHistory) updateRouteHistory('/tools/' + toolId + '/');
-  const description = `${tool.description} Use ${tool.name} online with ToolNest.`;
-  resetMeta(`${tool.name} | ToolNest`, description, `/tools/${tool.id}/`);
-  const related = TOOLS.filter(item => item.id !== tool.id && item.category === tool.category).slice(0, 4);
+  const expandedDescription = `${tool.description} Free to use in your browser, with no account required.`;
+  const description = expandedDescription.length <= 160 ? expandedDescription : tool.description;
+  const title = TOOL_TITLE_OVERRIDES[tool.id] || `Free ${tool.name} | ToolNest`;
+  const path = `/tools/${tool.id}/`;
+  resetMeta(title, description, path, [
+    { name: 'Home', path: '/' },
+    { name: CATEGORY_PAGES[tool.category][0], path: `/${CATEGORY_SLUGS[tool.category]}/` },
+    { name: tool.name, path }
+  ]);
+  const related = getRelatedTools(tool);
   const relatedSection = document.createElement('section');
   relatedSection.className = 'tool-content';
-  relatedSection.innerHTML = `<h2>Related tools</h2><p>${related.map(item => `<a href="/tools/${item.id}/" onclick="openTool('${item.id}'); return false;">${escapeHtml(item.name)}</a>`).join(' · ')}</p><p class="privacy-note">Privacy: this tool runs in your browser. Data entered here is not sent to ToolNest.</p>`;
+  relatedSection.innerHTML = `<h2>Related tools</h2><p>${related.map(item => `<a href="/tools/${item.id}/" onclick="openTool('${item.id}'); return false;">Try ${escapeHtml(item.name)}</a>`).join(' · ')}</p>`;
   view.appendChild(relatedSection);
 }
 
