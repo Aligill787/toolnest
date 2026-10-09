@@ -93,7 +93,7 @@ for (const routePath of sitemapPaths) {
   validateGeneratedPage(page, metadata);
 }
 
-for (const file of ['404.html', '_headers', '_redirects', 'robots.txt', 'sitemap.xml']) {
+for (const file of ['404.html', '_headers', '_redirects', 'robots.txt', 'sitemap.xml', 'sw.js']) {
   await fs.copyFile(path.join(projectRoot, file), path.join(outputRoot, file));
 }
 
