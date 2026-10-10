@@ -7,7 +7,10 @@ const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '
 const outputRoot = path.join(projectRoot, 'dist');
 const siteOrigin = 'https://toolnest.sbs';
 const sourceHtml = await fs.readFile(path.join(projectRoot, 'index.html'), 'utf8');
-const sourceScript = requiredMatch(sourceHtml, /<script>([\s\S]*?)<\/script>/i, 'inline application script')[1];
+const sourceScript = [...sourceHtml.matchAll(/<script>([\s\S]*?)<\/script>/gi)]
+  .map(match => match[1])
+  .find(script => script.includes('function init()'));
+if (!sourceScript) throw new Error('Could not find the inline application script in index.html.');
 const sourceStyles = requiredMatch(sourceHtml, /<style>([\s\S]*?)<\/style>/i, 'inline stylesheet')[1];
 const sourceDescription = requiredMatch(sourceHtml, /<meta name="description" content="([^"]*)"/i, 'homepage description')[1];
 const sourceTitle = decodeHtml(requiredMatch(sourceHtml, /<title>([\s\S]*?)<\/title>/i, 'homepage title')[1]);
