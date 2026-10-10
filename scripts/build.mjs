@@ -96,9 +96,10 @@ for (const routePath of sitemapPaths) {
   validateGeneratedPage(page, metadata);
 }
 
-for (const file of ['404.html', '_headers', '_redirects', 'robots.txt', 'sitemap.xml', 'sw.js', 'sw (1).js']) {
+for (const file of ['404.html', '_headers', '_redirects', 'robots.txt', 'sitemap.xml']) {
   await fs.copyFile(path.join(projectRoot, file), path.join(outputRoot, file));
 }
+await fs.copyFile(path.join(projectRoot, 'sw (3).js'), path.join(outputRoot, 'sw.js'));
 
 console.log(`Built ${sitemapPaths.length} route-specific HTML files in dist/.`);
 console.log(`Shared assets: assets/css/toolnest.css, assets/js/app.js, assets/js/extra-tools.js, assets/js/seo-metadata.js.`);
