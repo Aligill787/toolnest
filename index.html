@@ -10,6 +10,7 @@ if ('serviceWorker' in navigator) {
   });
 }
 </script>
+<script src="/blog/posts.js"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Use free online tools for text, images, PDFs, JSON, calculations, networking, and study. ToolNest runs useful tasks in your browser without an account.">
@@ -53,6 +54,11 @@ body {
   line-height: 1.6;
   min-height: 100vh;
 }
+
+.blog-header-link,
+.site-links a,
+.category-links a,
+.home-intro nav a { text-decoration: none; }
 
 /* Skip link for accessibility */
 .skip-link {
@@ -619,6 +625,311 @@ footer {
   font-size: 0.875rem;
 }
 
+.blog-page,
+.blog-card,
+.blog-article,
+.article-layout,
+.article-main,
+.article-sidebar,
+.blog-featured,
+.blog-search-wrap,
+.category-filter-row,
+.article-panel {
+  box-sizing: border-box;
+}
+
+.blog-page {
+  max-width: 1120px;
+  margin: 0 auto;
+  display: grid;
+  gap: 24px;
+}
+
+.blog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.blog-header h1 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.1;
+  margin: 0;
+}
+
+.blog-header-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary);
+  color: white;
+  border-radius: 999px;
+  padding: 10px 18px;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: var(--shadow);
+}
+
+.blog-header-link:hover { background: var(--primary-dark); }
+
+.blog-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.blog-card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 22px;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.blog-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--primary-light);
+  box-shadow: var(--shadow-lg);
+}
+
+.blog-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.blog-card .tag {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 5px 10px;
+  font-size: 0.73rem;
+  letter-spacing: 0.02em;
+  font-weight: 700;
+  background: #eef2ff;
+  color: var(--primary-dark);
+}
+
+.blog-card time {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+.blog-card h2,
+.blog-card h3,
+.blog-featured h2 {
+  font-size: 1.35rem;
+  line-height: 1.4;
+  color: var(--text);
+}
+
+.blog-card p,
+.blog-featured p,
+.blog-article .content p,
+.blog-article .content li {
+  color: var(--text-muted);
+}
+
+.blog-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+.blog-featured {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  overflow: hidden;
+  display: grid;
+  gap: 0;
+}
+
+.blog-featured > div {
+  padding: 28px;
+}
+
+.blog-featured .eyebrow {
+  display: inline-block;
+  margin-bottom: 10px;
+  border-radius: 999px;
+  background: #e0e7ff;
+  color: var(--primary-dark);
+  padding: 6px 10px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.blog-featured a {
+  display: inline-block;
+  margin-top: 12px;
+  font-weight: 600;
+  color: var(--primary-dark);
+  text-decoration: none;
+}
+
+.blog-search-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px 14px;
+}
+
+.blog-search-wrap input {
+  border: none;
+  background: transparent;
+  flex: 1;
+  font: inherit;
+  color: var(--text);
+}
+
+.blog-search-wrap input:focus { outline: none; }
+
+.category-filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.category-filter {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  border-radius: 999px;
+  padding: 8px 14px;
+  cursor: pointer;
+  font: inherit;
+}
+
+.category-filter.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: white;
+}
+
+.blog-article {
+  max-width: 980px;
+  margin: 0 auto;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 28px 24px 32px;
+}
+
+.article-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(220px, 0.72fr);
+  gap: 24px;
+}
+
+.article-main { min-width: 0; }
+
+.article-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.article-panel {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 18px;
+}
+
+.article-panel h3 {
+  margin-bottom: 10px;
+  font-size: 1rem;
+  color: var(--text);
+}
+
+.article-panel ul,
+.article-panel ol {
+  margin-left: 18px;
+}
+
+.article-panel a {
+  color: var(--primary-dark);
+  text-decoration: none;
+}
+
+.article-panel a:hover { text-decoration: underline; }
+
+.blog-article .content {
+  display: grid;
+  gap: 16px;
+}
+
+.blog-article .content h2,
+.blog-article .content h3 {
+  margin-top: 8px;
+  color: var(--text);
+}
+
+.blog-article .content ul,
+.blog-article .content ol {
+  margin-left: 22px;
+}
+
+.blog-article .content strong { color: var(--text); }
+
+.article-tools {
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+}
+
+.article-tool-box {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--primary);
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin: 16px 0;
+}
+
+.article-tool-box h3 { margin-bottom: 8px; }
+
+.empty-state {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 28px;
+  color: var(--text-muted);
+}
+
+@media (max-width: 900px) {
+  .article-layout { grid-template-columns: 1fr; }
+  .blog-header { flex-direction: column; align-items: flex-start; }
+}
+
+@media (max-width: 768px) {
+  .header-inner { flex-wrap: wrap; }
+  .search-box { max-width: 100%; order: 3; width: 100%; }
+  .hero h1 { font-size: 1.8rem; }
+  .tools-grid { grid-template-columns: 1fr; }
+  .tool-panel { padding: 20px; }
+  main { padding: 20px 16px 48px; }
+  .blog-featured > div,
+  .blog-article { padding: 20px 18px; }
+}
+
 footer a { color: var(--primary); text-decoration: none; }
 footer a:hover { text-decoration: underline; }
 
@@ -669,7 +980,7 @@ footer a:hover { text-decoration: underline; }
     </section>
 
       <nav class="category-links" aria-label="Tool categories">
-        <a href="/image-tools/" onclick="openCategory('image', event); return false;">Image Tools</a><a href="/pdf-tools/" onclick="openCategory('pdf', event); return false;">PDF Tools</a><a href="/text-tools/" onclick="openCategory('text', event); return false;">Text Tools</a><a href="/developer-tools/" onclick="openCategory('developer', event); return false;">Developer Tools</a><a href="/calculators/" onclick="openCategory('calculator', event); return false;">Calculators</a><a href="/networking-tools/" onclick="openCategory('networking', event); return false;">Networking</a><a href="/date-time-tools/" onclick="openCategory('datetime', event); return false;">Date &amp; Time</a><a href="/student-tools/" onclick="openCategory('student', event); return false;">Student Tools</a><a href="/security-tools/" onclick="openCategory('security', event); return false;">Security &amp; Utilities</a><a href="/converters/" onclick="openCategory('converter', event); return false;">Converters</a><a href="/utilities/" onclick="openCategory('utility', event); return false;">Utilities</a>
+        <a href="/blog/" onclick="openBlogHome(event); return false;">Blog</a><a href="/image-tools/" onclick="openCategory('image', event); return false;">Image Tools</a><a href="/pdf-tools/" onclick="openCategory('pdf', event); return false;">PDF Tools</a><a href="/text-tools/" onclick="openCategory('text', event); return false;">Text Tools</a><a href="/developer-tools/" onclick="openCategory('developer', event); return false;">Developer Tools</a><a href="/calculators/" onclick="openCategory('calculator', event); return false;">Calculators</a><a href="/networking-tools/" onclick="openCategory('networking', event); return false;">Networking</a><a href="/date-time-tools/" onclick="openCategory('datetime', event); return false;">Date &amp; Time</a><a href="/student-tools/" onclick="openCategory('student', event); return false;">Student Tools</a><a href="/security-tools/" onclick="openCategory('security', event); return false;">Security &amp; Utilities</a><a href="/converters/" onclick="openCategory('converter', event); return false;">Converters</a><a href="/utilities/" onclick="openCategory('utility', event); return false;">Utilities</a>
       </nav>
 
     <section class="home-intro" aria-labelledby="home-intro-title">
@@ -695,7 +1006,7 @@ footer a:hover { text-decoration: underline; }
 
 <footer>
   <p>© <span id="copyright-year">2026</span> ToolNest — Free online tools for everyday tasks.</p>
-  <nav class="site-links" aria-label="Company"><a href="/about/" onclick="openInfoPage('about', event); return false;">About</a><a href="/contact/" onclick="openInfoPage('contact', event); return false;">Contact</a><a href="/privacy-policy/" onclick="openInfoPage('privacy-policy', event); return false;">Privacy</a><a href="/terms/" onclick="openInfoPage('terms', event); return false;">Terms</a><a href="/disclaimer/" onclick="openInfoPage('disclaimer', event); return false;">Disclaimer</a><a href="/cookie-policy/" onclick="openInfoPage('cookie-policy', event); return false;">Cookies</a></nav>
+  <nav class="site-links" aria-label="Company"><a href="/blog/" onclick="openBlogHome(event); return false;">Blog</a><a href="/about/" onclick="openInfoPage('about', event); return false;">About</a><a href="/contact/" onclick="openInfoPage('contact', event); return false;">Contact</a><a href="/privacy-policy/" onclick="openInfoPage('privacy-policy', event); return false;">Privacy</a><a href="/terms/" onclick="openInfoPage('terms', event); return false;">Terms</a><a href="/disclaimer/" onclick="openInfoPage('disclaimer', event); return false;">Disclaimer</a><a href="/cookie-policy/" onclick="openInfoPage('cookie-policy', event); return false;">Cookies</a></nav>
   <p style="margin-top:8px;"><a href="/" onclick="showHome(event); return false;">Back to tools</a></p>
 </footer>
 
@@ -1236,6 +1547,193 @@ function showHome(e) {
   resetMeta('Free Online Tools for PDF, Images, Text & More | ToolNest', 'Use free online tools for text, images, PDFs, JSON, calculations, networking, and study. ToolNest runs useful tasks in your browser without an account.', '/');
 }
 
+const BLOG_POSTS = Array.isArray(window.TOOLNEST_BLOG_POSTS) ? window.TOOLNEST_BLOG_POSTS : [];
+
+function getBlogPosts() {
+  return [...BLOG_POSTS].sort((a, b) => new Date(b.date) - new Date(a.date));
+}
+
+function formatBlogDate(value) {
+  const date = new Date(`${value}T00:00:00`);
+  if (Number.isNaN(date.getTime())) return value;
+  return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+}
+
+function getBlogMetaFromPath(path) {
+  const normalized = path.replace(/\/+$/, '') || '/';
+  if (normalized === '/blog') return {
+    title: 'ToolNest Blog | IT, Cybersecurity, Networking & Careers',
+    description: 'Read practical articles about IT, cybersecurity, networking, AI, software, and job opportunities.',
+    canonical: 'https://toolnest.sbs/blog/'
+  };
+  const blogPost = getBlogPosts().find(post => `/${post.slug}` === normalized || `/blog/${post.slug}` === normalized || `/blog/${post.slug}/` === normalized);
+  if (!blogPost) return null;
+  return {
+    title: blogPost.seoTitle || `${blogPost.title} | ToolNest Blog`,
+    description: blogPost.description || blogPost.excerpt,
+    canonical: `https://toolnest.sbs/blog/${blogPost.slug}/`
+  };
+}
+
+function renderBlogCard(post, featured = false) {
+  const featuredMarkup = featured
+    ? '<span class="eyebrow">Featured article</span>'
+    : '<span class="tag">' + escapeHtml(post.category) + '</span>';
+  return `
+    <a class="blog-card" href="/blog/${escapeHtml(post.slug)}/" onclick="openBlogArticle('${escapeHtml(post.slug)}', event); return false;" aria-label="Read ${escapeHtml(post.title)}">
+      <div class="blog-card-header">
+        ${featuredMarkup}
+        <time datetime="${escapeHtml(post.date)}">${escapeHtml(formatBlogDate(post.date))}</time>
+      </div>
+      <div>
+        <h2>${escapeHtml(post.title)}</h2>
+      </div>
+      <p>${escapeHtml(post.excerpt)}</p>
+      <div class="blog-meta">
+        <span>${escapeHtml(post.author)}</span>
+        <span>•</span>
+        <span>${escapeHtml(String(post.readingTime))} min read</span>
+      </div>
+    </a>
+  `;
+}
+
+function openBlogHome(event, updateHistory = true) {
+  if (event) event.preventDefault();
+  setHomeHeadingVisible(false);
+  const view = document.getElementById('toolView');
+  document.getElementById('homeView').style.display = 'none';
+  view.classList.add('active');
+  const posts = getBlogPosts();
+  const featured = posts.find(post => post.featured) || posts[0];
+  const others = posts.filter(post => post.slug !== (featured && featured.slug));
+  const filterButtons = ['All', 'Cybersecurity', 'Networking', 'IT Fundamentals', 'AI & Technology', 'Software Guides', 'IT Jobs'];
+  view.innerHTML = `
+    <article class="blog-page">
+      <nav aria-label="Breadcrumb"><a href="/" onclick="showHome(event)">Home</a> / Blog</nav>
+      <header class="blog-header">
+        <h1>ToolNest Blog</h1>
+        <a class="blog-header-link" href="/" onclick="showHome(event); return false;">Back to tools</a>
+      </header>
+      <div class="blog-search-wrap">
+        <span aria-hidden="true">🔎</span>
+        <input type="search" id="blogSearchInput" placeholder="Search articles by topic, keyword, or title" aria-label="Search blog articles">
+      </div>
+      <div class="category-filter-row" aria-label="Blog categories">
+        ${filterButtons.map((category) => `<button type="button" class="category-filter ${category === 'All' ? 'active' : ''}" data-category="${escapeHtml(category)}">${escapeHtml(category)}</button>`).join('')}
+      </div>
+      ${featured ? `
+      <section class="blog-featured" aria-labelledby="featured-article-title">
+        <div>
+          <span class="eyebrow">Featured article</span>
+          <h2 id="featured-article-title">${escapeHtml(featured.title)}</h2>
+          <p>${escapeHtml(featured.excerpt)}</p>
+          <div class="blog-meta">
+            <span>${escapeHtml(featured.author)}</span>
+            <span>•</span>
+            <span>${escapeHtml(formatBlogDate(featured.date))}</span>
+            <span>•</span>
+            <span>${escapeHtml(String(featured.readingTime))} min read</span>
+          </div>
+          <a href="/blog/${escapeHtml(featured.slug)}/" onclick="openBlogArticle('${escapeHtml(featured.slug)}', event); return false;">Read article →</a>
+        </div>
+      </section>
+      ` : ''}
+      <div class="blog-list" id="blogListContainer"></div>
+    </article>
+  `;
+  const blogList = document.getElementById('blogListContainer');
+  function renderBlogList(selectedCategory = 'All', term = '') {
+    const visiblePosts = posts.filter((post) => {
+      const matchesCategory = selectedCategory === 'All' || post.category === selectedCategory;
+      const haystack = `${post.title} ${post.excerpt} ${post.tags.join(' ')} ${post.category}`.toLowerCase();
+      const matchesTerm = !term || haystack.includes(term.toLowerCase());
+      return matchesCategory && matchesTerm;
+    });
+    if (!visiblePosts.length) {
+      blogList.innerHTML = '<div class="empty-state">No articles match your current search or category.</div>';
+      return;
+    }
+    blogList.innerHTML = visiblePosts.map(post => renderBlogCard(post)).join('');
+  }
+  renderBlogList();
+  const searchInput = document.getElementById('blogSearchInput');
+  if (searchInput) {
+    searchInput.addEventListener('input', (event) => {
+      const activeCategory = document.querySelector('.category-filter.active')?.dataset.category || 'All';
+      renderBlogList(activeCategory, event.target.value);
+    });
+  }
+  document.querySelectorAll('.category-filter').forEach((button) => {
+    button.addEventListener('click', () => {
+      const selected = button.dataset.category || 'All';
+      document.querySelectorAll('.category-filter').forEach(item => item.classList.toggle('active', item === button));
+      renderBlogList(selected, searchInput ? searchInput.value : '');
+    });
+  });
+  if (updateHistory) updateRouteHistory('/blog/');
+  resetMeta('ToolNest Blog | IT, Cybersecurity, Networking & Careers', 'Read practical articles about IT, cybersecurity, networking, AI, software, and job opportunities.', '/blog/');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function openBlogArticle(slug, event, updateHistory = true) {
+  if (event) event.preventDefault();
+  const post = getBlogPosts().find(item => item.slug === slug);
+  if (!post) return;
+  setHomeHeadingVisible(false);
+  document.getElementById('homeView').style.display = 'none';
+  const view = document.getElementById('toolView');
+  view.classList.add('active');
+  const relatedPosts = getBlogPosts().filter(item => item.slug !== post.slug).slice(0, 3);
+  const relatedTools = (post.relatedTools || []).map(toolId => {
+    const tool = TOOLS.find(entry => entry.id === toolId);
+    if (!tool) return '';
+    return `<li><a href="/tools/${escapeHtml(tool.id)}/" onclick="openTool('${escapeHtml(tool.id)}', event); return false;">${escapeHtml(tool.name)}</a></li>`;
+  }).join('');
+  view.innerHTML = `
+    <article class="blog-article">
+      <nav aria-label="Breadcrumb"><a href="/" onclick="showHome(event)">Home</a> / <a href="/blog/" onclick="openBlogHome(event); return false;">Blog</a> / ${escapeHtml(post.title)}</nav>
+      <div class="article-layout">
+        <main class="article-main">
+          <div class="blog-meta" style="margin-bottom:12px;">
+            <span>${escapeHtml(post.category)}</span>
+            <span>•</span>
+            <span>${escapeHtml(formatBlogDate(post.date))}</span>
+            <span>•</span>
+            <span>${escapeHtml(String(post.readingTime))} min read</span>
+          </div>
+          <h1>${escapeHtml(post.title)}</h1>
+          <p style="margin-top:10px; color: var(--text-muted);">By ${escapeHtml(post.author)}</p>
+          <div class="content">${post.content}</div>
+        </main>
+        <aside class="article-sidebar">
+          <div class="article-panel">
+            <h3>About this article</h3>
+            <p>${escapeHtml(post.excerpt)}</p>
+          </div>
+          <div class="article-panel">
+            <h3>Categories</h3>
+            <p><a href="/blog/" onclick="openBlogHome(event); return false;">${escapeHtml(post.category)}</a></p>
+          </div>
+          <div class="article-panel">
+            <h3>Related tools</h3>
+            ${relatedTools ? `<ul>${relatedTools}</ul>` : '<p>No related tools listed.</p>'}
+          </div>
+          <div class="article-panel">
+            <h3>More articles</h3>
+            <ul>${relatedPosts.map(item => `<li><a href="/blog/${escapeHtml(item.slug)}/" onclick="openBlogArticle('${escapeHtml(item.slug)}', event); return false;">${escapeHtml(item.title)}</a></li>`).join('')}</ul>
+          </div>
+        </aside>
+      </div>
+    </article>
+  `;
+  if (updateHistory) updateRouteHistory(`/blog/${slug}/`);
+  resetMeta(post.seoTitle || `${post.title} | ToolNest Blog`, post.description || post.excerpt, `/blog/${slug}/`, [
+    { name: 'Home', path: '/' }, { name: 'Blog', path: '/blog/' }, { name: post.title, path: `/blog/${slug}/` }
+  ]);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
 const TOOL_TITLE_OVERRIDES = {
   'word-counter': 'Free Word Counter - Count Words & Characters | ToolNest',
   'case-converter': 'Free Case Converter - Uppercase, Lowercase & More | ToolNest',
@@ -1367,6 +1865,18 @@ function setCategory(id) {
 function routeCurrentPath() {
   const requestedPath = new URLSearchParams(window.location.search).get('route') || window.location.pathname;
   const path = requestedPath.replace(/\/+$/, '') || '/';
+  const blogPostRoute = path.match(/^\/blog\/([^/]+)$/);
+  if (blogPostRoute) {
+    const slug = blogPostRoute[1];
+    if (getBlogPosts().some(post => post.slug === slug)) {
+      openBlogArticle(slug, null, false);
+      return;
+    }
+  }
+  if (path === '/blog') {
+    openBlogHome(null, false);
+    return;
+  }
   const toolRoute = path.match(/^\/tools\/([^/]+)$/);
   if (toolRoute && TOOLS.some(tool => tool.id === toolRoute[1])) {
     openTool(toolRoute[1], false);

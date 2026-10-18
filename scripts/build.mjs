@@ -64,9 +64,11 @@ const sourceBounds = getDocumentBounds(sourceHtml);
 await fs.rm(outputRoot, { recursive: true, force: true });
 await fs.mkdir(path.join(outputRoot, 'assets/css'), { recursive: true });
 await fs.mkdir(path.join(outputRoot, 'assets/js'), { recursive: true });
+await fs.mkdir(path.join(outputRoot, 'blog'), { recursive: true });
 await fs.writeFile(path.join(outputRoot, 'assets/css/toolnest.css'), sourceStyles);
 await fs.writeFile(path.join(outputRoot, 'assets/js/app.js'), sourceScript);
 await fs.copyFile(path.join(projectRoot, 'assets/js/extra-tools.js'), path.join(outputRoot, 'assets/js/extra-tools.js'));
+await fs.copyFile(path.join(projectRoot, 'blog/posts.js'), path.join(outputRoot, 'blog/posts.js'));
 await fs.writeFile(
   path.join(outputRoot, 'assets/js/seo-metadata.js'),
   `window.TOOLNEST_SEO = Object.freeze(${JSON.stringify(routeMetadata)});\n`
